@@ -13,7 +13,7 @@ spec:
     server: https://api.k3s1.ujstor.com
   project: app-cluster-bootstrap
   source:
-    path: cluster/k3s1-app/helm/uptime-kuma
+    path: cluster/k3s1-app/helm/apps/uptime-kuma
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
     targetRevision: master
     helm:

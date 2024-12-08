@@ -14,7 +14,7 @@ spec:
     server: https://api.k3s1.ujstor.com
   project: app-cluster-bootstrap
   source:
-    path: cluster/k3s0-ops/helm/cluster-issuer
+    path: cluster/k3s0-ops/helm/system/cluster-issuer
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
     targetRevision: master
     helm:

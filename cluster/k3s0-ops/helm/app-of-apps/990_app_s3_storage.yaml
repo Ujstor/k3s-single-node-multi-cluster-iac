@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: ops-cluster-bootstrap
   source:
-    path: cluster/k3s0-ops/helm/s3-storage
+    path: cluster/k3s0-ops/helm/apps/s3-storage
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
     targetRevision: master
     helm:

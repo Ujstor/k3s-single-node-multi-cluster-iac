@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   project: ops-cluster-bootstrap
   source:
-    path: cluster/k3s0-ops/helm/cluster-issuer
+    path: cluster/k3s0-ops/helm/system/cluster-issuer
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
     targetRevision: master
     helm:

@@ -14,7 +14,7 @@ spec:
     server: https://api.k3s1.ujstor.com
   project: app-cluster-bootstrap
   source:
-    path: cluster/k3s1-app/helm/metallb-operator
+    path: cluster/k3s1-app/helm/system/metallb-operator
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
     targetRevision: master
     helm:

@@ -13,7 +13,7 @@ spec:
     server: https://api.k3s1.ujstor.com
   project: app-cluster-bootstrap
   source:
-    path: cluster/k3s1-app/helm/minio-operator
+    path: cluster/k3s1-app/helm/system/minio-operator
     repoURL: https://github.com/Ujstor/k3s-single-node-iac.git
     targetRevision: master
     helm:
