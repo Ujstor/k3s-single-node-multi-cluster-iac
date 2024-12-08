@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-harbor
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  destination:
+    namespace: harbor
+    server: https://kubernetes.default.svc
+  project: ops-cluster-bootstrap
+  source:
+    path: helm/apps/harbor
+    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: harbor
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

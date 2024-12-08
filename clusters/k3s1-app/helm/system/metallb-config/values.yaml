@@ -1,0 +1,7 @@
+metallb-config:
+  ipAddressPool:
+    addresses:
+     - 49.13.159.140/32
+
+  l2Advertisement:
+    enabled: true

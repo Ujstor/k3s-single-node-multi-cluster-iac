@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-ingress-nginx
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/hook-dependency: system-cilium
+spec:
+  destination:
+    namespace: ingress-nginx
+    server: https://kubernetes.default.svc
+  project: app-cluster-bootstrap
+  source:
+    path: cluster/k3s1-app/helm/ingress-nginx
+    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: ingress-nginx
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

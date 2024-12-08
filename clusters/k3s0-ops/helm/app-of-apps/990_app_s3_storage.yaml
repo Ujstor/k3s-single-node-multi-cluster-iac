@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-s3-storage
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+   argocd.argoproj.io/sync-wave: "12"
+spec:
+  destination:
+    namespace: s3-storage
+    server: https://kubernetes.default.svc
+  project: ops-cluster-bootstrap
+  source:
+    path: helm/apps/s3-storage
+    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: s3-storage
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

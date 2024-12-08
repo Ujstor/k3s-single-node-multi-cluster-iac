@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-metallb-operator
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook-dependency: system-cilium
+spec:
+  destination:
+    namespace: metallb
+    server: https://kubernetes.default.svc
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s0-ops/helm/metallb-operator
+    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: metallb-operator
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

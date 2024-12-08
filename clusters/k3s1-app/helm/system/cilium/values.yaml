@@ -1,0 +1,5 @@
+cilium-k3s:
+  cilium:
+    k8sServiceHost: api.k3s1.ujstor.com
+    operator:
+      replicas: 1

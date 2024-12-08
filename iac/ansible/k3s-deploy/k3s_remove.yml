@@ -1,0 +1,9 @@
+---
+- name: Remove k3s from server
+  hosts: server
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Remove k3s
+      ansible.builtin.command: /usr/local/bin/k3s-uninstall.sh
+      changed_when: true
