@@ -35,3 +35,4 @@ terraform.rc
 .terraform*
 
 .ssh/
+k3s1-cluster-secret.yaml

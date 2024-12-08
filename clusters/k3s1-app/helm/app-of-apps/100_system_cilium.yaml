@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: kube-system
-    server: https://kubernetes.default.svc
+    server: https://api.k3s1.ujstor.com
   project: app-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/cilium

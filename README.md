@@ -5,7 +5,7 @@ Minimal k3s single node deployment on Hetzner Cloud with Terraform and Ansible.
 ## Terraform
 
 ```bash
-cd terraform
+cd ./iac/terraform
 
 terraform init
 terraform apply
@@ -14,15 +14,21 @@ terraform apply
 ## Ansible
 
 ```bash
-docker build -t ansible-k3s ./ansible
+docker build -t ansible-k3s-prod ./iac/ansible/k3s-deploy
 
 docker run --rm -it \
-    -v $(pwd)/iac/ansible/inventory_k3s_deploy.yml:/config/inventory.yml \
-    -v $(pwd)/terraform/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
-    -v $(pwd)/terraform/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
-    ansible-k3s
+    -v $(pwd)/iac/ansible/inventory_k3s0_deploy.yml:/config/inventory.yml \
+    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
+    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
+    ansible-k3s-prod
 
-ansible-playbook playbook_k3s_deploy.yml
+docker run --rm -it \
+    -v $(pwd)/iac/ansible/inventory_k3s1_deploy.yml:/config/inventory.yml \
+    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
+    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
+    ansible-k3s-prod
+
+ansible-playbook k3s_deploy.yml
 
 cat kubeconfig
 ```

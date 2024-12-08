@@ -1,0 +1,19 @@
+---
+server:
+  hosts:
+    api.k3s1.ujstor.com:
+  vars:
+    k3s_version: v1.31.1+k3s1
+    api_endpoint: "{{ groups['server'] | first }}"
+    extra_server_args: >-
+      --cluster-cidr=10.255.0.0/16
+      --service-cidr=10.254.0.0/16
+      --disable servicelb
+      --disable traefik
+      --flannel-backend=none
+      --egress-selector-mode=disabled
+      --disable-cloud-controller
+      --disable-helm-controller
+      --disable-network-policy
+      --disable-kube-proxy
+      --tls-san {{ api_endpoint }}
