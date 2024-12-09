@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: gitops
     server: https://api.k3s1.ujstor.com:6443
-  project: default
+  project: app-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/app-of-apps
     repoURL: https://github.com/Ujstor/k3s-prod-iac
