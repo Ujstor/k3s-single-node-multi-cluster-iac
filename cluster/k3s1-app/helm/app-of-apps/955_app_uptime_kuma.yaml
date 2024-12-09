@@ -10,7 +10,7 @@ metadata:
 spec:
   destination:
     namespace: uptime-kuma
-    server: https://api.k3s1.ujstor.com
+    server: https://api.k3s1.ujstor.com:6443
   project: app-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/apps/uptime-kuma

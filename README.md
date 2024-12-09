@@ -68,6 +68,11 @@ helm install argocd . -n gitops
 ```bash
 cd helm
 kubectl apply -f aoa.yaml -n gitops
-``````
+```
+
+```bash
+k apply -f k3s1-cluster-secret.yaml -n gitops
+kubectl apply -f aoa.yaml -n gitops
+```
 
 The cluster will be automatically bootstrapped.

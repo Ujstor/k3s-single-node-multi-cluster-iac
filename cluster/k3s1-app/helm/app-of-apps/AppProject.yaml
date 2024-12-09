@@ -11,7 +11,7 @@ spec:
   # Allow deployment to any namespace
   destinations:
     - namespace: '*'
-      server: https://api.k3s1.ujstor.com
+      server: https://api.k3s1.ujstor.com:6443
   # Allow all cluster-scoped resources
   clusterResourceWhitelist:
     - group: '*'
