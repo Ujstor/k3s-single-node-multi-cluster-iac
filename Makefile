@@ -10,11 +10,11 @@ CHART_DIR_APPS_APP := clusters/k3s1-app/helm/apps
 
 # k3s0-ops cluster packages
 CHART_SYSTEM_OPS := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config
-CHART_APPS_OPS := harbor gitlab s3-storage
+CHART_APPS_OPS := harbor gitlab s3-storage gitea
 
 # k3s1-app cluster packages
 CHART_SYSTEM_APP := cert-manager cilium ingress-nginx cluster-issuer external-secrets postgres-operator minio-operator metallb-operator metallb-config
-CHART_APPS_APP := gitea portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics uptime-kuma wordpress-ds
+CHART_APPS_APP := portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics uptime-kuma wordpress-ds
 
 build_system_ops: $(CHART_SYSTEM_OPS)
 $(CHART_SYSTEM_OPS):

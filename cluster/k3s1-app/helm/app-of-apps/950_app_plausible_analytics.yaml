@@ -7,6 +7,8 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "14"
+    "argocd.argoproj.io/hook": "PreSync"
+    "argocd.argoproj.io/sync-options": "SkipDryRunOnMissingResource=true"
 spec:
   destination:
     namespace: plausible-analytics

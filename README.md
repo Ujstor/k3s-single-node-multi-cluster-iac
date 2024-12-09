@@ -86,17 +86,16 @@ token=$(kubectl get -n kube-system secret/argocd-manager-token -o jsonpath='{.da
 k8s0
 ```bash
 k apply -f k3s1-cluster-secret.yaml -n gitops
-k apply k3s0/aoa.yaml -n gitops
 ```
 or
 
 ```bash
 argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-web
-kubectl apply -k https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable --kubeconfig ~/.kube/k3s1-app
 ```
 
 k8s0
 ```bash
 k apply k3s0/aoa.yaml -n gitops
+```
 
 The cluster will be automatically bootstrapped.

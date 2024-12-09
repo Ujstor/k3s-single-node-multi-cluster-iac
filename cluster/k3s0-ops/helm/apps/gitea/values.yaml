@@ -3,15 +3,16 @@ gitea-k3s:
     ingress:
       enabled: true
       hosts:
-        - host: gitea.k3s1.ujstor.com
+        - host: gitea.k3s0.ujstor.com
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: gitea-tls
           hosts:
-            - gitea.k3s1.ujstor.com
-
+            - gitea.k3s0.ujstor.com
+    persistence:
+      size: 80Gi
     redis-cluster:
       enabled: false
     postgresql-ha:
@@ -22,4 +23,4 @@ gitea-k3s:
       enabled: true
       primary:
         persistence:
-          size: 2Gi
+          size: 5Gi
