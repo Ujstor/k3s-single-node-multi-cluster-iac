@@ -11,7 +11,7 @@ module "k3s_prod" {
   server_config = {
     k3s0-ops = {
       location     = "nbg1"
-      server_type  = "cx42"
+      server_type  = "cx32"
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-1.subnet_id
       subnet_ip    = "10.0.1.1"
