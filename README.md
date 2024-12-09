@@ -95,4 +95,8 @@ argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-w
 kubectl apply -k https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable --kubeconfig ~/.kube/k3s1-app
 ```
 
+k8s0
+```bash
+k apply k3s0/aoa.yaml -n gitops
+
 The cluster will be automatically bootstrapped.
