@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aoa-OPS
+  name: aoa-cluster-ops
   namespace: gitops
 spec:
   destination:
