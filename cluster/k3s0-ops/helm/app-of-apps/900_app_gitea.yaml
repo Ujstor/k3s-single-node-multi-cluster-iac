@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-gitea
-  namespace: gitea
+  namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
