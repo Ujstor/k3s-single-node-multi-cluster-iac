@@ -9,7 +9,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "9"
 spec:
   destination:
-    namespace: gitops
+    namespace: gitea
     server: https://kubernetes.default.svc
   project: app-cluster-bootstrap
   source:
