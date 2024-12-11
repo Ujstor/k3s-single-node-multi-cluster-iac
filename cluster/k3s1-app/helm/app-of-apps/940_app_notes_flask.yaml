@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-notes-flask
+  name: app-notes-flask-app-cluster
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

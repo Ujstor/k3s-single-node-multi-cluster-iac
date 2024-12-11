@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-uptime-kuma
+  name: app-uptime-kuma-app-cluster
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

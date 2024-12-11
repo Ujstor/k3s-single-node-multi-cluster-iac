@@ -6,7 +6,7 @@ metadata:
 spec:
   destination:
     namespace: gitops
-    server: https://kubernetes.default.svc 
+    server: https://kubernetes.default.svc
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/app-of-apps

@@ -72,8 +72,14 @@ k8s0
 ### Apply `aoa.yaml` in the `gitops` namespace:
 ```bash
 cd helm
-kubectl apply -f k3s0/aoa.yaml -n gitops
+kubectl apply -f cluster/k3s0-ops/helm/aoa.yaml -n gitops
 ```
+
+```bash
+argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-web
+```
+
+or
 
 k8s1
 ```bash
@@ -87,15 +93,10 @@ k8s0
 ```bash
 k apply -f k3s1-cluster-secret.yaml -n gitops
 ```
-or
-
-```bash
-argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-web
-```
 
 k8s0
 ```bash
-k apply k3s0/aoa.yaml -n gitops
+k apply k3s1/aoa.yaml -n gitops
 ```
 
 The cluster will be automatically bootstrapped.

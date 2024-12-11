@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-metallb-operator
+  name: system-metallb-operator-app-cluster
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
