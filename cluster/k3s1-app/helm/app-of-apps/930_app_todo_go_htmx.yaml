@@ -13,7 +13,7 @@ spec:
   destination:
     namespace: todo-go-htmx
     server: https://api.k3s1.ujstor.com:6443
-  project: app-cluster-bootstrap
+  project: ops-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/apps/todo-go-htmx
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git

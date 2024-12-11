@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: cluster-bootstrap
+  name: ops-cluster-bootstrap
   namespace: gitops
 spec:
   description: Project for bootstrapping cluster infrastructure

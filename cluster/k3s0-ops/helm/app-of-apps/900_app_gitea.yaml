@@ -11,7 +11,7 @@ spec:
   destination:
     namespace: gitea
     server: https://kubernetes.default.svc
-  project: app-cluster-bootstrap
+  project: ops-cluster-bootstrap
   source:
     path: cluster/k3s0-app/helm/apps/gitea
     repoURL: https://github.com/Ujstor/k3s-prod-iac.git
