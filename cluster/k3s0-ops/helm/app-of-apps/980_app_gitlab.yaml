@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-gitlab
+  name: app-gitlab-k3s0
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -19,8 +19,8 @@ spec:
     helm:
       version: v3
       releaseName: gitlab
-  # syncPolicy:
-  #   automated:
-  #     selfHeal: true
-  #   syncOptions:
-  #     - CreateNamespace=true
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

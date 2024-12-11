@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-streamlit-wh-app-cluster
+  name: app-streamlit-wh-k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

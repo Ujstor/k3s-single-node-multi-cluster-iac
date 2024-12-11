@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-gitlab-operator
+  name: system-gitlab-operator-k3s0
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-todo-go-htmx-app-cluster
+  name: app-todo-go-htmx-k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

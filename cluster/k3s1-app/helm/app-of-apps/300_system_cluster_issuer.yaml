@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-cluster-issuer-app-cluster
+  name: system-cluster-issuer-k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

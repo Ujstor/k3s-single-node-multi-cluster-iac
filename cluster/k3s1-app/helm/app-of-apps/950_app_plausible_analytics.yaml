@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-plausible-analytics-app-cluster
+  name: app-plausible-analytics-k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

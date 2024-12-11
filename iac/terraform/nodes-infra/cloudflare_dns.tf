@@ -66,6 +66,14 @@ module "cloudflare_record" {
       ttl     = 60
       proxied = false
     }
+    todo_k3s1 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "todo"
+      content = module.k3s_prod.server_info.k3s1-app.ip
+      type    = "A"
+      ttl     = 60
+      proxied = false
+    }
   }
   depends_on = [module.k3s_prod]
 }

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-cilium
+  name: system-cilium-k3s0
   namespace: gitops
   annotations:
     argocd.argoproj.io/sync-wave: "0"

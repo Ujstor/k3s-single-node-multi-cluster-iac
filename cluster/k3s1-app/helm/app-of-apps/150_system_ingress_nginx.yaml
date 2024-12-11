@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-ingress-nginx--app-cluster
+  name: system-ingress-nginx--k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io

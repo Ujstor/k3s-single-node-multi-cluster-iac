@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-minio-operator-app-cluster
+  name: system-minio-operator-k3s1
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
