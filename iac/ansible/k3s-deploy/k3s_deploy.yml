@@ -5,7 +5,6 @@
   become: true
   roles:
     - role: common
-    - role: k3s.orchestration.prereq
   tasks:
     - name: Generate random token
       ansible.builtin.shell: |
@@ -21,27 +20,31 @@
         token: "{{ k3s_token_generated.stdout }}"
       no_log: true
 
-- name: Setup K3S server
-  hosts: server
+- name: Setup K3S server k3s0
+  hosts: k3s0
   become: true
   roles:
+    - role: k3s.orchestration.prereq
     - role: k3s.orchestration.k3s_server
 
-- name: Get kubeconfig
-  hosts: server
+- name: Setup K3S server k3s1
+  hosts: k3s1
   become: true
-  vars:
-    kubeconfig_path: /root/.kube/config
-    local_kubeconfig_path: ./kubeconfig
+  roles:
+    - role: k3s.orchestration.prereq
+    - role: k3s.orchestration.k3s_server
+
+- name: Fetch and configure kubeconfigs
+  hosts: server
   tasks:
     - name: Fetch kubeconfig file from remote server
       ansible.builtin.fetch:
-        src: "{{ kubeconfig_path }}"
-        dest: "{{ local_kubeconfig_path }}"
+        src: "/etc/rancher/k3s/k3s.yaml"
+        dest: "./kubeconfig_k3s{{ inventory_hostname | regex_replace('.*k3s([0-9]).*', '\\1') }}"
         flat: true
     - name: Replace server IP in kubeconfig
       ansible.builtin.replace:
-        path: "{{ local_kubeconfig_path }}"
-        regexp: 'server: https://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:6443'
-        replace: "server: https://{{ api_endpoint }}:6443"
+        path: "./kubeconfig_k3s{{ inventory_hostname | regex_replace('.*k3s([0-9]).*', '\\1') }}"
+        regexp: 'server: https://127.0.0.1:6443'
+        replace: "server: https://{{ hostvars[inventory_hostname].api_endpoint }}:6443"
       delegate_to: localhost

@@ -1,11 +1,11 @@
-# K3S Single Node IaC
+# K3S Single Node Multi Cluster IaC
 
-Minimal k3s single node deployment on Hetzner Cloud with Terraform and Ansible.
+Minimal k3s single node deployment on Hetzner Cloud with Terraform and Ansible as multi cluster configuration managed with ArgoCD.
 
 ## Terraform
 
 ```bash
-cd ./iac/terraform
+cd ./iac/terraform/nodes-infra/
 
 terraform init
 terraform apply
@@ -14,26 +14,18 @@ terraform apply
 ## Ansible
 
 ```bash
-docker build -t ansible-k3s-prod ./iac/ansible/k3s-deploy
+docker build -t ansible-k3s-single-node-multi-cluster ./iac/ansible/k3s-deploy
 
 docker run --rm -it \
-    -v $(pwd)/iac/ansible/inventory_k3s0_deploy.yml:/config/inventory.yml \
+    -v $(pwd)/iac/ansible/inventory_k3s_deploy.yml:/config/inventory.yml \
     -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
     -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
-    ansible-k3s-prod
-
-docker run --rm -it \
-    -v $(pwd)/iac/ansible/inventory_k3s1_deploy.yml:/config/inventory.yml \
-    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
-    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
-    ansible-k3s-prod
-
-ansible-playbook k3s_deploy.yml
+    ansible-k3s-single-node-multi-cluster
 
 cat kubeconfig
 ```
 
-or use the [prebuilt](https://hub.docker.com/repository/docker/ujstor/ansible-k3s-prod/general) image.
+or use the [prebuilt](https://hub.docker.com/repository/docker/ujstor/ansible-k3s-single-node-multi-cluster/general) image.
 
 ## Helm
 
