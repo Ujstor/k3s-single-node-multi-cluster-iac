@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: cluster/k3s0-ops/helm/app-of-apps
-    repoURL: https://github.com/Ujstor/k3s-prod-iac
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac
     targetRevision: master
   syncPolicy:
     automated:

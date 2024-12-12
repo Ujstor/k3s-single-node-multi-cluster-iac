@@ -15,7 +15,7 @@ spec:
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/system/ingress-nginx
-    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
       version: v3

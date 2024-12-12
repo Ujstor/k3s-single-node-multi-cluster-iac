@@ -14,7 +14,7 @@ spec:
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/apps/notes-flask
-    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
       version: v3

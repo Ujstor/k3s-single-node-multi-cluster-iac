@@ -10,7 +10,7 @@ spec:
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s1-app/helm/app-of-apps
-    repoURL: https://github.com/Ujstor/k3s-prod-iac
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac
     targetRevision: master
   syncPolicy:
     automated:

@@ -12,7 +12,7 @@ spec:
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s0-ops/helm/system/cilium
-    repoURL: https://github.com/Ujstor/k3s-prod-iac.git
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
       version: v3
