@@ -19,14 +19,6 @@ spec:
     helm:
       version: v3
       releaseName: harbor
-  ignoreDifferences:
-  - group: cilium.io
-    kind: CiliumIdentity
-    name: "*"
-    jsonPointers:
-      - /metadata
-      - /security-labels
-      - /status
   syncPolicy:
     automated:
       selfHeal: true

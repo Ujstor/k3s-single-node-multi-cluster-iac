@@ -3,10 +3,10 @@ ops: build_system_ops build_apps_ops
 app: build_system_app build_apps_app
 
 # Paths (these are correct as per your note)
-CHART_DIR_SYSTEM_OPS := clusters/k3s0-ops/helm/system
+CHART_DIR_SYSTEM_OPS := cluster/k3s0-ops/helm/system
 CHART_DIR_APPS_OPS := clusters/k3s0-ops/helm/apps
 CHART_DIR_SYSTEM_APP := clusters/k3s1-app/helm/system
-CHART_DIR_APPS_APP := clusters/k3s1-app/helm/apps
+CHART_DIR_APPS_APP := cluster/k3s1-app/helm/apps
 
 # k3s0-ops cluster packages
 CHART_SYSTEM_OPS := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config
