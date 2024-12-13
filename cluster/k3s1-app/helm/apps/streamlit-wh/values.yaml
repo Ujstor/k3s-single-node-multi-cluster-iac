@@ -1,0 +1,16 @@
+streamlit-wh:
+  ingress:
+    annotations: 
+      cert-manager.io/cluster-issuer: "letsencrypt"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    hosts:
+      - host: working-hours.astipan.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+     - secretName: streamlit-wh-prod-tls
+       hosts:
+         - working-hours.astipan.com
