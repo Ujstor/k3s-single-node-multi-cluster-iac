@@ -11,6 +11,12 @@ gitea-k3s:
         - secretName: gitea-tls
           hosts:
             - gitea.k3s0.ujstor.com
+
+    config:
+      service:
+        DISABLE_REGISTRATION: true
+        REQUIRE_SIGNIN_VIEW: true
+
     persistence:
       size: 80Gi
     redis-cluster:
