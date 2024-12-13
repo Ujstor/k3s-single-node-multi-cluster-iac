@@ -6,7 +6,6 @@
 - name: Upgrade all packages
   ansible.builtin.command:
     cmd: apt-get -y upgrade
-  become: true
 
 - name: Install public AuthorizedKeysFile
   ansible.posix.authorized_key:
