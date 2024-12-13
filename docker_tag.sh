@@ -60,6 +60,7 @@ main() {
     create_env_file
 }
 
+# Create .env file
 create_env_file() {
     cat << EOF > .env
 HARBOR_URL=$HARBOR_URL

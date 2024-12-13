@@ -1,7 +1,6 @@
 plausible:
   plausible-analytics:
     baseURL: https://plausible.k3s1.ujstor.com
-    disableRegistration: false
 
   customIngress:
     enabled: true
