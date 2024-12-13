@@ -2,5 +2,5 @@ docker:
   HARBOR_URL: harbor.k3s0.ujstor.com
   HARBOR_PROJECT: docker
   HARBOR_REPO: ansible-k3s-single-node-multi-cluster
-  VERSION_PART: Minor # Patch, Minor, Major
+  VERSION_PART: Patch # Patch, Minor, Major
   PUSH_TO_HARBOR: true
