@@ -4,20 +4,20 @@ module "cloudflare_record" {
   cloudflare_record = {
     portfolio = {
       zone_id = var.cloudflare_zone_id
-      name    = "astipan.com"
+      name    = "@"
       content = data.hcloud_server.k3s1.ipv4_address
       type    = "A"
       ttl     = 60
       proxied = false
     }
-    portfolio_CNAME = {
-      zone_id = var.cloudflare_zone_id
-      name    = "www"
-      content = "astipan.com"
-      type    = "CNAME"
-      ttl     = 60
-      proxied = false
-    }
+    # portfolio_CNAME = {
+    #   zone_id = var.cloudflare_zone_id
+    #   name    = "www"
+    #   content = "astipan.com"
+    #   type    = "CNAME"
+    #   ttl     = 60
+    #   proxied = false
+    # }
   }
 }
 
