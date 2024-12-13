@@ -36,3 +36,5 @@ terraform.rc
 
 .ssh/
 k3s1-cluster-secret.yaml
+secret-migrate-repo.yaml
+secret-migrate-stars.yaml

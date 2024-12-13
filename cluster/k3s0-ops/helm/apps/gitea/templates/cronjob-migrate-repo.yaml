@@ -1,0 +1,55 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gitea-migration-repo
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: migration
+            image: python:3.9-slim
+            env:
+            - name: GH_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: git-credentials-repo
+                  key: GH_ACCESS_TOKEN
+            - name: GITEA_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: git-credentials-repo
+                  key: GITEA_ACCESS_TOKEN
+            - name: GITEA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: git-credentials-repo
+                  key: GITEA_USERNAME
+            - name: GITEA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: git-credentials-repo
+                  key: GITEA_PASSWORD
+            - name: TARGET_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: migration-config
+                  key: TARGET_HOST
+            volumeMounts:
+            - name: migration-script-repo
+              mountPath: /app
+            workingDir: /app
+            command:
+            - /bin/sh
+            - -c
+            - |
+              pip install PyGithub python-dotenv requests
+              python migration.py
+          volumes:
+          - name: migration-script-repo
+            configMap:
+              name: migration-script-repo
+          restartPolicy: OnFailure
