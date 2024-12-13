@@ -15,6 +15,9 @@ module "k3s_prod" {
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-1.subnet_id
       subnet_ip    = "10.0.1.1"
+      labels = {
+        cluster = "k3s0"
+      }
     }
     k3s1-app = {
       location     = "nbg1"
@@ -22,6 +25,9 @@ module "k3s_prod" {
       ipv6_enabled = false
       subnet_id    = module.network_config.subnet_id.subnet-2.subnet_id
       subnet_ip    = "10.0.2.1"
+      labels = {
+        cluster = "k3s1"
+      }
     }
   }
 
