@@ -7,16 +7,16 @@ module "cloudflare_record" {
       name    = "astipan.com"
       content = data.hcloud_server.k3s1.ipv4_address
       type    = "A"
-      ttl     = 1
-      proxied = true
+      ttl     = 60
+      proxied = false
     }
     portfolio_CNAME = {
       zone_id = var.cloudflare_zone_id
       name    = "www"
       content = "astipan.com"
       type    = "CNAME"
-      ttl     = 1
-      proxied = true
+      ttl     = 60
+      proxied = false
     }
   }
 }
