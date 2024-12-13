@@ -18,7 +18,7 @@ s3-storage:
           - secretName: minio-api-tls
             hosts:
               - s3.k3s0.ujstor.com
-        host: s3.k3s1.ujstor.com
+        host: s3.k3s0.ujstor.com
       console:
         enabled: true
         tls: 
