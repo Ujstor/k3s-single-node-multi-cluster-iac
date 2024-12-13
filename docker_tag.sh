@@ -1,21 +1,35 @@
 #!/bin/bash
 
+# Load configuration from yaml
 eval $(yq e '.docker | to_entries | .[] | "export \(.key)=\(.value)"' docker-config.yml)
 
-DOCKER_IMAGE="$DOCKER_HUB_USERNAME/$DOCKER_REPO_NAME"
 
-TAGS=$(curl -s "https://hub.docker.com/v2/repositories/$DOCKER_IMAGE/tags/?page_size=100" | jq -r '.results[].name')
+# Get Harbor authentication token
+get_harbor_token() {
+    local token=$(curl -s -u "${HARBOR_USERNAME}:${HARBOR_PASSWORD}" \
+        "https://${HARBOR_URL}/service/token?service=harbor-registry&scope=repository:${HARBOR_PROJECT}/${HARBOR_REPO}:pull")
+    echo $(echo $token | jq -r '.token')
+}
 
+# Get tags from Harbor
+get_harbor_tags() {
+    local token=$(get_harbor_token)
+    local tags=$(curl -s -H "Authorization: Bearer $token" \
+        "https://${HARBOR_URL}/api/v2.0/projects/${HARBOR_PROJECT}/repositories/${HARBOR_REPO}/artifacts" | \
+        jq -r '.[].tags[].name' 2>/dev/null)
+    echo "$tags"
+}
+
+# Get tags and process version
+TAGS=$(get_harbor_tags)
 if [ -z "$TAGS" ]; then
     DEFAULT_TAG="0.0.1"
     NEW_TAG="$DEFAULT_TAG"
 else
     LATEST_TAG=$(echo "$TAGS" | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
-
     if [ -z "$LATEST_TAG" ]; then
         LATEST_TAG="0.0.1"
     fi
-
     IFS='.' read -ra PARTS <<< "$LATEST_TAG"
     MAJOR=${PARTS[0]}
     MINOR=${PARTS[1]}
@@ -33,11 +47,13 @@ else
     fi
 fi
 
+# Create .env file
 create_env_file() {
     cat << EOF > .env
-DOCKER_REPO_NAME=$DOCKER_REPO_NAME
+HARBOR_REPO_NAME=$HARBOR_REPO
 NEW_TAG=$NEW_TAG
-PUSH_TO_DOCKER=$PUSH_TO_DOCKER
+PUSH_TO_HARBOR=$PUSH_TO_HARBOR
+HARBOR_URL=$HARBOR_URL
 EOF
 }
 
