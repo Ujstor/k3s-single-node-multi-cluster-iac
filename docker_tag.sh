@@ -4,7 +4,7 @@
 eval $(yq e '.docker | to_entries | .[] | "export \(.key)=\(.value)"' docker-config.yml)
 
 
-# Get Harbor authentication token
+#  Harbor authentication token
 get_harbor_token() {
     local token=$(curl -s -u "${HARBOR_USERNAME}:${HARBOR_PASSWORD}" \
         "https://${HARBOR_URL}/service/token?service=harbor-registry&scope=repository:${HARBOR_PROJECT}/${HARBOR_REPO}:pull")
