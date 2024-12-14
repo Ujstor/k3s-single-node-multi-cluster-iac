@@ -50,6 +50,14 @@ module "cloudflare_record" {
       ttl     = 1
       proxied = true
     }
+    github-readme-stats = {
+      zone_id = var.cloudflare_zone_id
+      name    = "readme"
+      content = module.k3s_prod.server_info.k3s1-app.ip
+      type    = "A"
+      ttl     = 1
+      proxied = true
+    }
   }
   depends_on = [module.k3s_prod]
 }

@@ -1,0 +1,11 @@
+github-readme-stats:
+  ingress:
+    hosts:
+      - host: readme.ujstor.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+     - secretName: github-readme-stats-prod-tls
+       hosts:
+         - readme.ujstor.com

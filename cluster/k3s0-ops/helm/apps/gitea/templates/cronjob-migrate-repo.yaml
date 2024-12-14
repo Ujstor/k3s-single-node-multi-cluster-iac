@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: gitea-migration-repo
 spec:
-  schedule: "0 0 * * *"
+  schedule: "0 0 * * 0"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
