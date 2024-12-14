@@ -13,7 +13,7 @@ gitea-k3s:
             - gitea.k3s0.ujstor.com
 
     persistence:
-      size: 80Gi
+      size: 100Gi
     redis-cluster:
       enabled: false
     postgresql-ha:

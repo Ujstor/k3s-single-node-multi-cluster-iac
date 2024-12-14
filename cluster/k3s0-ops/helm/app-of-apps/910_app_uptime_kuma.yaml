@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-uptime-kuma-k3s1
+  name: app-uptime-kuma-k3s0
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "15"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   destination:
     namespace: uptime-kuma
-    server: https://api.k3s1.ujstor.com:6443
+    server: https://kubernetes.default.svc
   project: ops-cluster-bootstrap
   source:
-    path: cluster/k3s1-app/helm/apps/uptime-kuma
+    path: cluster/k3s0-ops/helm/apps/uptime-kuma
     repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
