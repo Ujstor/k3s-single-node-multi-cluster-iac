@@ -1,0 +1,4 @@
+nginx:
+  nginx:
+    controller:
+      replicaCount: 2
