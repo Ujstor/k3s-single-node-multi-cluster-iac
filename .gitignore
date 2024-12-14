@@ -35,6 +35,8 @@ terraform.rc
 .terraform*
 
 .ssh/
+
 k3s1-cluster-secret.yaml
 secret-migrate-repo.yaml
 secret-migrate-stars.yaml
+secret-probit-api.yaml

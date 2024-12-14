@@ -42,6 +42,14 @@ module "cloudflare_record" {
       ttl     = 1
       proxied = true
     }
+    probit-api = {
+      zone_id = var.cloudflare_zone_id
+      name    = "probit"
+      content = data.hcloud_server.k3s1.ipv4_address
+      type    = "A"
+      ttl     = 1
+      proxied = true
+    }
   }
 }
 
