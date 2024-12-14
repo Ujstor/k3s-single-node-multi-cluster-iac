@@ -1,0 +1,11 @@
+apiVersion: v2
+name: social-media-fastapi
+description: A Helm chart for Kubernetes
+type: application
+version: 1.0.0
+appVersion: "1.1.0"
+
+dependencies:
+- name: social-media-fastapi
+  version: 1.0.0
+  repository: "https://ujstor.github.io/helm-charts-github-apps"

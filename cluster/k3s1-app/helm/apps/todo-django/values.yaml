@@ -1,0 +1,11 @@
+todo-django:
+  ingress:
+    hosts:
+      - host: django-todo.astipan.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+     - secretName: django-todo-prod-tls
+       hosts:
+         - django-todo.astipan.com

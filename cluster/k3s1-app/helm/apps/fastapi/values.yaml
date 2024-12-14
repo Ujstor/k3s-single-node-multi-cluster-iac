@@ -1,0 +1,11 @@
+social-media-fastapi:
+  ingress:
+    hosts:
+      - host: fastapi.astipan.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+     - secretName: fastapi-prod-tls
+       hosts:
+         - fastapi.astipan.com

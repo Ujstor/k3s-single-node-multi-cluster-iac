@@ -1,39 +1,40 @@
-all: build_system_ops build_apps_ops build_system_app build_apps_app
-ops: build_system_ops build_apps_ops
-app: build_system_app build_apps_app
+all: k3s0 k3s1
+k3s0: build_system_k3s0 build_apps_k3s0
+k3s1: build_system_k3s1 build_apps_k3s1
 
-# Paths (these are correct as per your note)
-CHART_DIR_SYSTEM_OPS := cluster/k3s0-ops/helm/system
-CHART_DIR_APPS_OPS := cluster/k3s0-ops/helm/apps
-CHART_DIR_SYSTEM_APP := cluster/k3s1-app/helm/system
-CHART_DIR_APPS_APP := cluster/k3s1-app/helm/apps
+# Paths
+CHART_DIR_SYSTEM_K3S0 := cluster/k3s0-ops/helm/system
+CHART_DIR_APPS_K3S0 := cluster/k3s0-ops/helm/apps
+
+CHART_DIR_SYSTEM_K3S1 := cluster/k3s1-app/helm/system
+CHART_DIR_APPS_K3S1 := cluster/k3s1-app/helm/apps
 
 # k3s0-ops cluster packages
-CHART_SYSTEM_OPS := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config
-CHART_APPS_OPS := harbor gitlab s3-storage gitea
+CHART_SYSTEM_K3S0 := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config
+CHART_APPS_K3S0 := harbor gitlab s3-storage gitea
 
 # k3s1-app cluster packages
-CHART_SYSTEM_APP := cert-manager cilium ingress-nginx cluster-issuer external-secrets postgres-operator minio-operator metallb-operator metallb-config
-CHART_APPS_APP := portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics uptime-kuma wordpress-ds probit-api github-readme-stats
+CHART_SYSTEM_K3S1 := cert-manager cilium ingress-nginx cluster-issuer external-secrets postgres-operator minio-operator metallb-operator metallb-config
+CHART_APPS_K3S1 := portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics uptime-kuma wordpress-ds probit-api github-readme-stats todo-django fastapi
 
-build_system_ops: $(CHART_SYSTEM_OPS)
-$(CHART_SYSTEM_OPS):
+build_system_k3s0: $(CHART_SYSTEM_K3S0)
+$(CHART_SYSTEM_K3S0):
 	@echo "Packaging $@ chart..."
-	@helm dependency build $(CHART_DIR_SYSTEM_OPS)/$@ || helm dependency update $(CHART_DIR_SYSTEM_OPS)/$@
+	@helm dependency build $(CHART_DIR_SYSTEM_K3S0)/$@ || helm dependency update $(CHART_DIR_SYSTEM_K3S0)/$@
 
-build_apps_ops: $(CHART_APPS_OPS)
-$(CHART_APPS_OPS):
+build_apps_k3s0: $(CHART_APPS_K3S0)
+$(CHART_APPS_K3S0):
 	@echo "Packaging $@ chart..."
-	@helm dependency build $(CHART_DIR_APPS_OPS)/$@ || helm dependency update $(CHART_DIR_APPS_OPS)/$@
+	@helm dependency build $(CHART_DIR_APPS_K3S0)/$@ || helm dependency update $(CHART_DIR_APPS_K3S0)/$@
 
-build_system_app: $(CHART_SYSTEM_APP)
-$(CHART_SYSTEM_APP):
+build_system_k3s1: $(CHART_SYSTEM_K3S1)
+$(CHART_SYSTEM_K3S1):
 	@echo "Packaging $@ chart..."
-	@helm dependency build $(CHART_DIR_SYSTEM_APP)/$@ || helm dependency update $(CHART_DIR_SYSTEM_APP)/$@
+	@helm dependency build $(CHART_DIR_SYSTEM_K3S1)/$@ || helm dependency update $(CHART_DIR_SYSTEM_K3S1)/$@
 
-build_apps_app: $(CHART_APPS_APP)
-$(CHART_APPS_APP):
+build_apps_k3s1: $(CHART_APPS_K3S1)
+$(CHART_APPS_K3S1):
 	@echo "Packaging $@ chart..."
-	@helm dependency build $(CHART_DIR_APPS_APP)/$@ || helm dependency update $(CHART_DIR_APPS_APP)/$@
+	@helm dependency build $(CHART_DIR_APPS_K3S1)/$@ || helm dependency update $(CHART_DIR_APPS_K3S1)/$@
 
-.PHONY: all ops app build_system_ops $(CHART_SYSTEM_OPS) build_apps_ops $(CHART_APPS_OPS) build_system_app $(CHART_SYSTEM_APP) build_apps_app $(CHART_APPS_APP)
+.PHONY: all k3s0 k3s1 build_system_k3s0 $(CHART_SYSTEM_K3S0) build_apps_k3s0 $(CHART_APPS_K3S0) build_system_k3s1 $(CHART_SYSTEM_K3S1) build_apps_k3s1 $(CHART_APPS_K3S1)

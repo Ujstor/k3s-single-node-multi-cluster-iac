@@ -1,0 +1,6 @@
+dependencies:
+- name: social-media-fastapi
+  repository: https://ujstor.github.io/helm-charts-github-apps
+  version: 1.0.0
+digest: sha256:166c49a0470957a45bedb794941a206e3043bb657eb8118e1ebbe3590d269915
+generated: "2024-12-14T15:48:06.884546834+01:00"

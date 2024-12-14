@@ -37,7 +37,6 @@ get_harbor_tags() {
 get_latest_version() {
     local tags="$1"
     local latest_version="0.0.0"
-    
     while read -r tag; do
         if ! [[ $tag =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             continue
@@ -46,7 +45,6 @@ get_latest_version() {
             latest_version=$tag
         fi
     done <<< "$tags"
-    
     echo "$latest_version"
 }
 
