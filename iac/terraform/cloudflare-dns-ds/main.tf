@@ -7,16 +7,16 @@ module "cloudflare_record" {
       name    = "@"
       content = data.hcloud_server.k3s1.ipv4_address
       type    = "A"
-      ttl     = 1
-      proxied = true
+      ttl     = 60
+      proxied = false
     }
     blog_CNAME = {
       zone_id = var.cloudflare_zone_id
       name    = "www"
       content = "dancingspoon.net"
       type    = "CNAME"
-      ttl     = 1
-      proxied = true
+      ttl     = 60
+      proxied = false
     }
   }
 }
