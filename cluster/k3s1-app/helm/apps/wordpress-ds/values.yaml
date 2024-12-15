@@ -10,11 +10,13 @@ wp-ds:
       enabled: true
       pathType: Prefix
       ingressClassName: "nginx"
-      hostname: wordpress.ujstor.com
+      hostname: dancingspoon.net
       path: /
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
       tls: true
 
     persistence:

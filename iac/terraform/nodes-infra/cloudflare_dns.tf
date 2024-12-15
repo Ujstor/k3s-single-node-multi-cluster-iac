@@ -34,14 +34,14 @@ module "cloudflare_record" {
       ttl     = 60
       proxied = false
     }
-    # plausible-analytics = {
-    #   zone_id = var.cloudflare_zone_id
-    #   name    = "analytics"
-    #   content = module.k3s_prod.server_info.k3s1-app.ip
-    #   type    = "A"
-    #   ttl     = 1
-    #   proxied = true
-    # }
+    plausible_analytics_k3s1 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "analytics"
+      content = module.k3s_prod.server_info.k3s1-app.ip
+      type    = "A"
+      ttl     = 1
+      proxied = true
+    }
     wordpress_k3s1 = {
       zone_id = var.cloudflare_zone_id
       name    = "wordpress"
