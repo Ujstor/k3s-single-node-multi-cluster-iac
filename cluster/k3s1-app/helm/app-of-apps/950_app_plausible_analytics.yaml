@@ -27,8 +27,8 @@ spec:
     name: plausible-analytics
     jsonPointers:
     - /data
-  syncPolicy:
-    automated:
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+  # syncPolicy:
+  #   automated:
+  #     selfHeal: true
+  #   syncOptions:
+  #     - CreateNamespace=true
