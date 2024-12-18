@@ -1,0 +1,12 @@
+apiVersion: v2
+name: prometheus-grafana
+description: Prometheus grafana kube stack Helm chart configured by Ujstor
+type: application
+version: 1.0.0
+appVersion: "v0.79.0"
+
+dependencies:
+- name: prometheus-grafana
+  version: 1.0.0
+  repository: "https://ujstor.github.io/helm-charts-system"
+  alias: metrics-k3s0
