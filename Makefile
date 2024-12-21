@@ -15,11 +15,11 @@ CHART_DIR_APPS_K3S1 := cluster/k3s1-app/helm/apps
 
 # k3s0-ops cluster packages
 CHART_SYSTEM_K3S0 := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config prometheus-grafana
-CHART_APPS_K3S0 := harbor gitlab s3-storage gitea
+CHART_APPS_K3S0 := harbor gitlab s3-storage gitea uptime-kuma
 
 # k3s1-app cluster packages
 CHART_SYSTEM_K3S1 := cert-manager cilium ingress-nginx cluster-issuer external-secrets postgres-operator minio-operator metallb-operator metallb-config prometheus-grafana
-CHART_APPS_K3S1 := portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics uptime-kuma wordpress-ds probit-api github-readme-stats todo-django fastapi
+CHART_APPS_K3S1 := portfolio streamlit-wh todo-go-htmx notes-flask plausible-analytics wordpress-ds probit-api github-readme-stats todo-django fastapi
 
 # Define pattern rules for k3s0
 build_system_k3s0: $(addprefix k3s0-system-,$(CHART_SYSTEM_K3S0))
@@ -45,4 +45,4 @@ k3s1-apps-%:
 	@echo "Packaging $* chart for k3s1 apps..."
 	@helm dependency build --skip-refresh $(CHART_DIR_APPS_K3S1)/$* || helm dependency update --skip-refresh $(CHART_DIR_APPS_K3S1)/$*
 
-.PHONY: all k3s0 k3s1 build_system_k3s0 build_apps_k3s0 build_system_k3s1 build_apps_k3s1
+.PHONY: all k3s0 k3s1 build_system_k3s0 build_apps_k3s0 build_system_k3s1 build_apps_k3s1 update-repos
