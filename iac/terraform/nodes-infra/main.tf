@@ -1,12 +1,12 @@
 module "ssh_key_k3s_prod" {
-  source = "github.com/Ujstor/terraform-hetzner-modules//modules/ssh_key?ref=v0.0.6"
+  source = "github.com/Ujstor/terraform-hetzner-modules//modules/ssh_key?ref=v0.0.8"
 
   ssh_key_name = "k3s_prod_hetzner_ssh_key"
   ssh_key_path = ".ssh" #create dir before appling tf config if you use custom paths for ssh keys
 }
 
 module "k3s_prod" {
-  source = "github.com/Ujstor/terraform-hetzner-modules//modules/server?ref=v0.0.6"
+  source = "github.com/Ujstor/terraform-hetzner-modules//modules/server?ref=v0.0.8"
 
   server_config = {
     k3s0-ops = {
@@ -40,8 +40,19 @@ module "k3s_prod" {
   ]
 }
 
+module "floating_ip" {
+  source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/floating_ip?ref=v0.0.8"
+
+  floating_ip_config = {
+    ip-1 = {
+      server_id       = module.k3s_prod.server_info.k3s0-ops.id
+      server_location = module.k3s_prod.server_info.k3s0-ops.location
+    }
+  }
+}
+
 module "network_config" {
-  source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/vpc_subnet?ref=v0.0.6"
+  source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/vpc_subnet?ref=v0.0.8"
 
   vpc_config = {
     vpc_name     = "cluster-vpc"

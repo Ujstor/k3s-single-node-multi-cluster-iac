@@ -2,6 +2,7 @@ metallb-config:
   ipAddressPool:
     addresses:
      - 188.245.179.200/32
+     - 49.13.32.42/32
 
   l2Advertisement:
     enabled: true
