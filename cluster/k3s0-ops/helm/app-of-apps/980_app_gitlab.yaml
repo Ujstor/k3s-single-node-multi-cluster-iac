@@ -19,8 +19,8 @@ spec:
     helm:
       version: v3
       releaseName: gitlab
-  # syncPolicy:
-  #   automated:
-  #     selfHeal: true
-  #   syncOptions:
-  #     - CreateNamespace=true
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
