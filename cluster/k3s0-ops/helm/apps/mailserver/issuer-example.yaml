@@ -1,0 +1,27 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-issuer
+  namespace: mailserver
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-key
+    solvers:
+    - dns01:
+        cloudflare:
+          apiTokenSecretRef:
+            name: mailserver-issuer
+            key: api-key
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mailserver-issuer
+  namespace: mailserver
+type: Opaque
+stringData:
+  api-key: <Cloudflare-api-key>
+---

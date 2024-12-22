@@ -15,7 +15,7 @@ CHART_DIR_APPS_K3S1 := cluster/k3s1-app/helm/apps
 
 # k3s0-ops cluster packages
 CHART_SYSTEM_K3S0 := cert-manager cilium ingress-nginx argocd cluster-issuer external-secrets minio-operator gitlab-operator metallb-operator metallb-config prometheus-grafana
-CHART_APPS_K3S0 := harbor gitlab s3-storage gitea uptime-kuma
+CHART_APPS_K3S0 := harbor gitlab s3-storage gitea uptime-kuma mailserver
 
 # k3s1-app cluster packages
 CHART_SYSTEM_K3S1 := cert-manager cilium ingress-nginx cluster-issuer external-secrets postgres-operator minio-operator metallb-operator metallb-config prometheus-grafana

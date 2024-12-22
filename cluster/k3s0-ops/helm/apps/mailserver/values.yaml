@@ -1,0 +1,14 @@
+mailserver:
+  dockermailserver:
+    deployment:
+      env:
+        OVERRIDE_HOSTNAME: mail.ujstor.com
+    certificate: mailserver-tls
+
+  certificates:
+    organization: Ujstor
+    duration: 2160h
+    renewBefore: 360h
+    issuerRef:
+      name: letsencrypt-issuer
+      kind: Issuer

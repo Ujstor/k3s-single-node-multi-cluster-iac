@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-mailserver-k3s0
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "13"
+spec:
+  destination:
+    namespace: mailserver
+    server: https://kubernetes.default.svc
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s0-ops/helm/apps/mailserver
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: mailserver
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

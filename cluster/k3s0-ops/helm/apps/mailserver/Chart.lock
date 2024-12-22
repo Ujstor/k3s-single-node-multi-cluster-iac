@@ -1,0 +1,6 @@
+dependencies:
+- name: docker-mailserver
+  repository: https://ujstor.github.io/helm-charts-apps
+  version: 1.0.0
+digest: sha256:66157629bac029a467898cb0b372cb406d7abb154ef7ac04a2290ff8a5030935
+generated: "2024-12-22T21:20:57.062963625+01:00"

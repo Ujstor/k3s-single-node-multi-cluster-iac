@@ -60,11 +60,19 @@ module "cloudflare_record" {
     mail = {
       zone_id = var.cloudflare_zone_id
       name    = "mail"
-      content = module.k3s_prod.server_info.k3s0-ops.ip
+      content = module.floating_ip.floating_ip_status.ip-1.ip
       type    = "A"
       ttl     = 60
       proxied = false
     }
+    mail-dkms = {
+      zone_id = var.cloudflare_zone_id
+      name    = "mail._domainkey.ujstor.com"
+      content = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlKuh1diP0S5sKdXtlMnjqtDijNqXAHnsHo4jRySPS8TgjwJIKuKa8jq4LlsStZoUXcCEGlqJuBnUqVUeOoBkCrJRqQqh3sg1YgPTzKIfqb6Yq10x6N//BftlgvIB7y0I/UdcE6S3i4Umub0xB6/A7pY6tXtqqlT91jDvl1gN2wugQF0unsPrqzVyplOkS8mT2Uz08gtrgf3Aa7gQ+IQo93hciLH0I/Ik9LK5Lfj62J4SfMUAAQBw5gSETi0ZIlzd9xkziBYpx6xDDjqEp8L2fbejstYlERMDIQOaKibvCwG2VF52oIMkNuu7R4qpChjsnbvFqa7hSQCfAluwjl2bfwIDAQAB"
+      type    = "TXT"
+      ttl     = 1
+    }
+
   }
   depends_on = [module.k3s_prod]
 }
