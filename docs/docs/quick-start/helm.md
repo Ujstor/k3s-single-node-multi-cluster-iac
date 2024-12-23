@@ -11,7 +11,7 @@ metallb-config:
 ```
 Push changes to the GitHub repository and ArgoCD will apply them after the next steps.
 
-## Install Cilium in the `kube-system` namespace:
+## Install Cilium:
 
 Change directory to the k3s0-ops Cilium Helm chart config and run:
 
@@ -19,6 +19,8 @@ Change directory to the k3s0-ops Cilium Helm chart config and run:
 helm install cilium . -n kube-system
 ```
 Observe in k9s when networking is applied: CoreDNS, local-path-provisioner, and metrics-server pods will be running and cluster IPs will be assigned.
+
+![cilium](../public/03_cilium.png)
 
 ## Install Argo CD:
 
@@ -33,7 +35,11 @@ Change directory to the k3s0-ops Argo CD Helm chart config and run:
 ```bash
 helm install argocd . -n gitops
 ```
-Check when ArgoCD is installed, you can do port-forwarding to the ArgoCD pod and log in with the password that can be grabbed from the secrets (use k9s, it's easier than raw kubectl commands). Finaly apply k3s0 `aoa.yaml` in the `gitops` namespace:
+Check when ArgoCD is installed, you can do port-forwarding to the ArgoCD pod and log in with the password that can be grabbed from the secrets (use k9s, it's easier than raw kubectl commands).
+
+![argocd](../public/04_argocd.png)
+
+Finaly apply k3s0 `aoa.yaml` in the `gitops` namespace:
 
 ```bash
 kubectl apply -f cluster/k3s0-ops/helm/aoa.yaml -n gitops

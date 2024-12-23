@@ -56,6 +56,10 @@ docker run --rm -it \
 
 Ansible is custom configured in ansible.cfg, which is why mounting points can be different from classic Ansible configuration.
 
+```bash
+ansible-playbook k3s_deploy.yml
+```
+
 ## Kubeconfig
 After the Ansible playbook finishes, you will have a kubeconfig file in the Docker container's root. These files are used to access the K3s clusters.
 Save them and later, you can [back up](https://github.com/Ujstor/k3s-single-node-multi-cluster-iac/tree/master/iac/terraform/s3-kubeconfig-backup) these files in the same MinIO tenant as your Terraform state and SSH keys.

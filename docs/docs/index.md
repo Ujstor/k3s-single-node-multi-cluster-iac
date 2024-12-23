@@ -6,6 +6,8 @@ Minimal k3s single node deployment on Hetzner Cloud with Terraform and Ansible a
 
 K3s is stripped down to minimal components. The only components we have are CoreDNS, local-path-provisioner, and metrics-server. Everything else is disabled and configured with custom Helm charts.
 
+![k9s_minimal](./public/02_k9s_minimal.png)
+
 The clusters will be automatically bootstrapped and managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/).
 
 ## Prerequisites
