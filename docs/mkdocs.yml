@@ -30,6 +30,11 @@ theme:
 
 nav:
   - Home: index.md
+  - Quick Start:
+    - Overview: quick-start/overview.md
+    - Terrafrom: quick-start/terraform.md
+    - Ansible: quick-start/ansible.md
+    - Helm: quick-start/helm.md
   - k3s0-ops Components:
     - Mailserver: k3s0-ops-components/mailserver.md
 

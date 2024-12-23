@@ -2,93 +2,28 @@
 
 Minimal k3s single node deployment on Hetzner Cloud with Terraform and Ansible as multi cluster configuration managed with ArgoCD.
 
-## Terraform
+![cluser](./public/01_infra_diagram_k3s.png)
 
-```bash
-cd ./iac/terraform/nodes-infra/
+K3s is stripped down to minimal components. The only components we have are CoreDNS, local-path-provisioner, and metrics-server. Everything else is disabled and configured with custom Helm charts.
 
-terraform init
-terraform apply
-```
+The clusters will be automatically bootstrapped and managed with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/).
 
-## Ansible
+## Prerequisites
 
-```bash
-docker build -t ansible-k3s-single-node-multi-cluster ./iac/ansible/k3s-deploy
+Before you begin, ensure you have the following:
 
-docker run --rm -it \
-    -v $(pwd)/iac/ansible/inventory_k3s_deploy.yml:/config/inventory.yml \
-    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key:/secrets/ssh_key \
-    -v $(pwd)/iac/terraform/nodes-infra/.ssh/k3s_prod_hetzner_ssh_key.pub:/secrets/ssh_key.pub \
-    ansible-k3s-single-node-multi-cluster
+- [Hetzner Cloud account](https://hetzner.cloud/?ref=Ix9xCKNxJriM) (20$ free credits)
+- [Terraform](https://www.terraform.io/downloads.html)
+- [Helm](https://helm.sh/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+- [K9s](https://k9scli.io/) (optional but recommended)
 
-cat kubeconfig
-```
 
-or use the [prebuilt](https://hub.docker.com/repository/docker/ujstor/ansible-k3s-single-node-multi-cluster/general) image.
+The main idea is to have a primary single-node operations K3s cluster that has ArgoCD and an App of Apps pattern to manage both operations and other K3s single or multi-node clusters.
 
-## Helm
+Helm charts and Terraform modules are custom-made with the intention to be reusable and reconfigurable:
 
-### Add server ip to metalLB system helm chart
-
-```bash
-metallb-config:
-  ipAddressPool:
-    addresses:
-     - 192.168.1.1/32
-
-  l2Advertisement:
-    enabled: true
-```
-push chages to the repo (argocd aoa)
-
-### Install Cilium in the `kube-system` namespace:
-
-k8s0
-```bash
-cd cluster/k3s0-ops/helm/cilium
-helm install cilium . -n kube-system
-```
-
-k8s0
-```bash
-### Install Argo CD:
-```bash
-kubectl create namespace gitops
-cd cluster/k3s0-ops/helm/argo-cd
-helm install argocd . -n gitops
-```
-
-k8s0
-```bash
-### Apply `aoa.yaml` in the `gitops` namespace:
-```bash
-cd helm
-kubectl apply -f cluster/k3s0-ops/helm/aoa.yaml -n gitops
-```
-
-```bash
-argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-web
-```
-
-or
-
-k8s1
-```bash
-k apply -f k3s1-cluster-secret.yaml -n kube-system
-
-ca=$(kubectl get -n kube-system secret/argocd-manager-token -o jsonpath='{.data.ca\.crt}')
-token=$(kubectl get -n kube-system secret/argocd-manager-token -o jsonpath='{.data.token}' | base64 --decode)
-```
-
-k8s0
-```bash
-k apply -f k3s1-cluster-secret.yaml -n gitops
-```
-
-k8s0
-```bash
-k apply k3s1/aoa.yaml -n gitops
-```
-
-The cluster will be automatically bootstrapped.
+- [Helm Charts System](https://github.com/Ujstor/helm-charts-system)
+- [Helm Charts Apps](https://github.com/Ujstor/helm-charts-apps)
+- [Helm Charts Github Apps](https://github.com/Ujstor/helm-charts-github-apps)
+- [Terraform Hetzner Modules](https://github.com/Ujstor/terraform-hetzner-modules)

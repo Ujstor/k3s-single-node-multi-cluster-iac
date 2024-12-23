@@ -68,7 +68,7 @@ module "cloudflare_record" {
     mail-dkms = {
       zone_id = var.cloudflare_zone_id
       name    = "mail._domainkey.ujstor.com"
-      content = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlKuh1diP0S5sKdXtlMnjqtDijNqXAHnsHo4jRySPS8TgjwJIKuKa8jq4LlsStZoUXcCEGlqJuBnUqVUeOoBkCrJRqQqh3sg1YgPTzKIfqb6Yq10x6N//BftlgvIB7y0I/UdcE6S3i4Umub0xB6/A7pY6tXtqqlT91jDvl1gN2wugQF0unsPrqzVyplOkS8mT2Uz08gtrgf3Aa7gQ+IQo93hciLH0I/Ik9LK5Lfj62J4SfMUAAQBw5gSETi0ZIlzd9xkziBYpx6xDDjqEp8L2fbejstYlERMDIQOaKibvCwG2VF52oIMkNuu7R4qpChjsnbvFqa7hSQCfAluwjl2bfwIDAQAB"
+      content = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj3Rdv+i/KiBIQ0YiCIVlhoGPKycSyBdEZGGTdfazZVkH+p7NWIKEcwrVx0ExFd7ri2YIAkJKUVlt8gRQ+tmZLGJYB6q0MIfZYC8G/tJsU6xES7DH9dAtgruu4hSUertdid1zX9hFgluHzmwVI4rbx+rMbXyq5VhkjA/ZS2gYw2DUWFXFNsTRMmu/XL1kOHEz0+My65zoQgYz/i99Un0kiGs9NP2DSellOk7TsvbNf/CSMpbnotdUTA/iG2TifiR83Ha9UVaiUW7muxlF5SuVyDD44hToDlisUEk4gpZ7bvxcJorJFFhEQ9COJuKBmM98B8+7ttfI8IzCGqaCu1/1QwIDAQAB"
       type    = "TXT"
       ttl     = 1
     }

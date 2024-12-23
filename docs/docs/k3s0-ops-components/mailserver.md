@@ -150,6 +150,8 @@ Execute the command to create an email account.
 
 ```bash
 setup email add admin@ujstor.com password1234
+
+setup email list
 ```
 This is a minimal configuration. Test it with an application that supports SMTP - for example, Uptime Kuma can send you notifications when your website endpoint is unavailable.
 
@@ -285,3 +287,15 @@ Pod logs
 
  - The complete IP check for sending Mailservers: [https://multirbl.valli.org/](https://multirbl.valli.org/)
  - SMTP test: [https://www.gmass.co/smtp-test](https://www.gmass.co/smtp-test)
+
+## Useful commands
+
+```bash
+setup email add admin@example.com passwd123
+setup email add info@example.com passwd123
+setup alias add admin@example.com external-account@gmail.com
+setup alias add info@example.com external-account@gmail.com
+setup email list
+setup alias list
+setup email del admin@example.com
+```
