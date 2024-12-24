@@ -1,0 +1,6 @@
+dependencies:
+- name: prometheus-grafana
+  repository: https://ujstor.github.io/helm-charts-system
+  version: 1.0.0
+digest: sha256:6c8cc93651a2699e315335da8a475ef47aa2ddeefab33ec728f65340984600f1
+generated: "2024-12-24T15:31:46.673244857+01:00"

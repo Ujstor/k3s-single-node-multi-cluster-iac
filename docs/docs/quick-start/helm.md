@@ -52,7 +52,7 @@ There are a couple of ways to add K3s1 to ArgoCD. The easiest way is to use the 
 ) by referencing the K3s1 kubeconfig file:
 
 ```bash
-argocd login argocd.k3s0.ujsto.com
+argocd login argocd.k3s0.ujstor.com
 argocd cluster add default --kubeconfig ~/.kube/k3s1-app --name default --grpc-web
 ```
 

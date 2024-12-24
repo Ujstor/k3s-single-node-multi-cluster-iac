@@ -34,6 +34,22 @@ module "cloudflare_record" {
       ttl     = 60
       proxied = false
     }
+    kube_api_k3s2 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "api.k3s2"
+      content = module.k3s_prod.server_info.k3s2-win.ip
+      type    = "A"
+      ttl     = 60
+      proxied = false
+    }
+    wildcard_k3s2 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "*.k3s2"
+      content = module.k3s_prod.server_info.k3s2-win.ip
+      type    = "A"
+      ttl     = 60
+      proxied = false
+    }
     plausible_analytics_k3s1 = {
       zone_id = var.cloudflare_zone_id
       name    = "analytics"

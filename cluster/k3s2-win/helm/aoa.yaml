@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aoa-cluster-win
+  namespace: gitops
+spec:
+  destination:
+    namespace: gitops
+    server: https://kubernetes.default.svc
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s2-win/helm/app-of-apps
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac
+    targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -29,6 +29,16 @@ module "k3s_prod" {
         cluster = "k3s1"
       }
     }
+    k3s2-win = {
+      location     = "nbg1"
+      server_type  = "cx32"
+      ipv6_enabled = false
+      subnet_id    = module.network_config.subnet_id.subnet-2.subnet_id
+      subnet_ip    = "10.0.2.2"
+      labels = {
+        cluster = "k3s2"
+      }
+    }
   }
 
   use_network       = true
