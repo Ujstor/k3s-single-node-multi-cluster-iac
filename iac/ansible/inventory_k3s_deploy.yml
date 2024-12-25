@@ -15,13 +15,13 @@ server:
           k3s_control_node: true
           k3s_server_init_node: true
           server_group: "k3s1"
-    k3s2:
-      hosts:
-        api.k3s2.ujstor.com:
-          api_endpoint: api.k3s2.ujstor.com
-          k3s_control_node: true
-          k3s_server_init_node: true
-          server_group: "k3s2"
+    # k3s2:
+    #   hosts:
+    #     192.168.122.128:
+    #       api_endpoint: 192.168.122.128
+    #       k3s_control_node: true
+    #       k3s_server_init_node: true
+    #       server_group: "k3s2"
   vars:
     k3s_version: v1.31.3+k3s1
     extra_server_args: >-

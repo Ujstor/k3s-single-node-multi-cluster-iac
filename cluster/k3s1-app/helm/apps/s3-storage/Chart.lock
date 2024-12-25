@@ -1,0 +1,6 @@
+dependencies:
+- name: minio-tenant
+  repository: https://ujstor.github.io/helm-charts-system
+  version: 1.1.0
+digest: sha256:1029045f4b8874e2f45ce9580586db2e0ff7326dfd18a66a072349e9b0bbca86
+generated: "2024-12-14T18:36:20.333657382+01:00"

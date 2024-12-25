@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-s3-storage-k3s1
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+   argocd.argoproj.io/sync-wave: "17"
+spec:
+  destination:
+    namespace: s3-storage
+    server: https://api.k3s1.ujstor.com:6443
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s1-app/helm/apps/s3-storage
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: s3-storage
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true

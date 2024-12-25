@@ -6,18 +6,33 @@
   roles:
     - role: common
   tasks:
-    - name: Generate random token
+    - name: Check for existing token
+      ansible.builtin.stat:
+        path: /var/lib/rancher/k3s/server/token
+      register: token_file
+
+    - name: Read existing token if present
+      ansible.builtin.slurp:
+        path: /var/lib/rancher/k3s/server/token
+      register: existing_token
+      when: token_file.stat.exists
+      no_log: true
+
+    - name: Generate random token if no existing token
       ansible.builtin.shell: |
         set -o pipefail
         openssl rand -base64 64 | tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1
       args:
         executable: /bin/bash
       register: k3s_token_generated
+      when: not token_file.stat.exists
       changed_when: false
       no_log: true
+
     - name: Set token fact
       ansible.builtin.set_fact:
-        token: "{{ k3s_token_generated.stdout }}"
+        token: "{{ existing_token.content | b64decode if token_file.stat.exists else k3s_token_generated.stdout }}"
+      no_log: true}"
       no_log: true
 
 - name: Setup K3S server k3s0
