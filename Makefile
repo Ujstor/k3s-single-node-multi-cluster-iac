@@ -1,4 +1,4 @@
-all: update-repos k3s0 k3s1
+all: update-repos k3s0 k3s1 k3s2
 
 k3s0: build_system_k3s0 build_apps_k3s0
 k3s1: build_system_k3s1 build_apps_k3s1
@@ -28,7 +28,7 @@ CHART_APPS_K3S1 := portfolio streamlit-wh todo-go-htmx notes-flask plausible-ana
 
 # k3s2-win cluster packages
 CHART_SYSTEM_K3S2 := cert-manager cilium ingress-nginx cluster-issuer external-secrets metallb-operator metallb-config prometheus-grafana
-CHART_APPS_K3S2 :=
+CHART_APPS_K3S2 := k8s-win
 
 # Define pattern rules for k3s0
 build_system_k3s0: $(addprefix k3s0-system-,$(CHART_SYSTEM_K3S0))

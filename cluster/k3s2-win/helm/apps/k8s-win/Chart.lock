@@ -1,0 +1,6 @@
+dependencies:
+- name: k8s-windows
+  repository: https://ujstor.github.io/helm-charts-apps
+  version: 1.0.0
+digest: sha256:abc58a79a89c97cf272c55887a9c6629db59ea920f6af9d6b821ca6d95415d3a
+generated: "2024-12-25T23:27:01.333616333+01:00"

@@ -73,3 +73,10 @@
   ansible.builtin.service:
     name: sshd
     state: restarted
+  ignore_errors: yes
+
+- name: Restart ssh
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+  ignore_errors: yes

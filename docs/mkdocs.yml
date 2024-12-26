@@ -37,6 +37,9 @@ nav:
     - Helm: quick-start/helm.md
   - k3s0-ops Components:
     - Mailserver: k3s0-ops-components/mailserver.md
+  - Deployment logs:
+    - Terraform: deployment-logs/terraform.md
+    - Ansible: deployment-logs/ansible.md
 
 extra:
     generator: false

@@ -1,0 +1,25 @@
+k8s-windows:
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/auth-type: basic
+      nginx.ingress.kubernetes.io/auth-secret: win-basic-auth-secret
+      nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+    hosts:
+      - host: win.k3s2.local
+        paths:
+          - path: /
+            pathType: Prefix
+
+  resources:
+    - name: VERSION
+      value: "10"
+    - name: RAM_SIZE
+      value: "8G"
+    - name: CPU_CORES
+      value: "12"
+    - name: DISK_SIZE
+      value: "100G"

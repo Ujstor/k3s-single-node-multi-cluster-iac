@@ -58,6 +58,7 @@
 
 - name: Fetch and configure kubeconfigs
   hosts: server
+  become: true
   tasks:
     - name: Fetch kubeconfig file from remote server
       ansible.builtin.fetch:
@@ -68,5 +69,5 @@
       ansible.builtin.replace:
         path: "./kubeconfig_k3s{{ inventory_hostname | regex_replace('.*k3s([0-9]).*', '\\1') }}"
         regexp: 'server: https://127.0.0.1:6443'
-        replace: "server: https://{{ hostvars[inventory_hostname].api_endpoint }}:6443"
+        replace: "server: https://{{ hostvars[inventory_hostname].api_endpoint[0] }}:6443"
       delegate_to: localhost

@@ -1,24 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-external-secrets-k3s2
+  name: system-cluster-issuer-k3s2
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/hook-dependency: system-cert-manager
 spec:
   destination:
-    namespace: external-secrets
-    server: https://kubernetes.default.svc
+    namespace: cert-manager
+    server: https://api.k3s2.ujstor.com:6443
   project: ops-cluster-bootstrap
   source:
-    path: cluster/k3s2-win/helm/system/external-secrets
+    path: cluster/k3s0-ops/helm/system/cluster-issuer
     repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
       version: v3
-      releaseName: external-secrets
+      releaseName: cluster-issuer
   syncPolicy:
     automated:
       selfHeal: true

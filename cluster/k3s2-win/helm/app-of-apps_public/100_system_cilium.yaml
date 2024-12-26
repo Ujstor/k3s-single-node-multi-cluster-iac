@@ -1,26 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-portfolio-k3s2
+  name: system-cilium-k3s2
   namespace: gitops
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd.argoproj.io/sync-wave: "9"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: windows
-    server: https://kubernetes.default.svc
+    namespace: kube-system
+    server: https://api.k3s2.ujstor.com:6443
   project: ops-cluster-bootstrap
   source:
-    path: cluster/k3s2-win/helm/apps/k8s-win
+    path: cluster/k3s2-win/helm/system/cilium
     repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
     targetRevision: master
     helm:
       version: v3
-      releaseName: k8s-win
+      releaseName: cilium
   syncPolicy:
     automated:
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true

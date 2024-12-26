@@ -1,3 +1,0 @@
-cluster-issuer-k3s:
-  clusterIssuer:
-    email: aleksandarstipan@gmail.com

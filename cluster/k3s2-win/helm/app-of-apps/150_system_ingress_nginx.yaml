@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     namespace: ingress-nginx
-    server: https://api.k3s2.ujstor.com:6443
+    server: https://kubernetes.default.svc
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s2-win/helm/system/ingress-nginx
