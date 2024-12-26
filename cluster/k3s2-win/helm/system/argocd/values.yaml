@@ -9,6 +9,7 @@ argocd-k3s:
         annotations:
           nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        extraTls: []
 
     redis-ha:
       enabled: false
