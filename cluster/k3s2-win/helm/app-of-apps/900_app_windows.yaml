@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-portfolio-k3s2
+  name: app-win-k3s2
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
