@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-prometheus-grafana-k3s
+  name: system-prometheus-grafana-k3s2
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
