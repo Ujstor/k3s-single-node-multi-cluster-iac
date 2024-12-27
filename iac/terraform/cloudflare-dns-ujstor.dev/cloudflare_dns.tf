@@ -10,9 +10,49 @@ module "cloudflare_record" {
       ttl     = 3600
       proxied = false
     }
+    api-k3s3 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "api.k3s3"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    api-k3s4 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "api.k3s4"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
     ssh-k3s = {
       zone_id = var.cloudflare_zone_id
       name    = "ssh.k3s"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    ssh-k3s2 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "ssh.k3s2"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    ssh-k3s3 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "ssh.k3s3"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    ssh-k3s4 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "ssh.k3s4"
       content = local.ip
       type    = "A"
       ttl     = 3600
