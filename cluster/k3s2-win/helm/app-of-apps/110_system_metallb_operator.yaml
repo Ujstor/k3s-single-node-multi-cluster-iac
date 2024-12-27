@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     namespace: metallb
-    server: https://api.k3s2.ujstor.dev:6443
+    server: https://api.k3s2.ujstor.dev:6442
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s2-win/helm/system/metallb-operator
