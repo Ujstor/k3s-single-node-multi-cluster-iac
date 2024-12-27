@@ -20,5 +20,5 @@ resource "aws_s3_object" "prod_kubeconfig" {
   bucket   = aws_s3_bucket.ssh_keys_backup.id
   key      = "kubeconfig/${each.value}"
   source   = "${local.kube_directory}/${each.value}"
-  etag     = filemd5("${local.kube_directory}/${each.value}")
+  etag     = "${filemd5("${local.kube_directory}/${each.value}")}-${timestamp()}"
 }

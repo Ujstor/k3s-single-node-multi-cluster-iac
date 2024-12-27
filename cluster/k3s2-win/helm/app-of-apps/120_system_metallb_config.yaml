@@ -11,7 +11,7 @@ metadata:
 spec:
   destination:
     namespace: metallb
-    server: https://kubernetes.default.svc
+    server: https://api.k3s2.ujstor.com:6443
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s2-win/helm/system/metallb-config

@@ -1,0 +1,44 @@
+services:
+  nginx-gui:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    # ports:
+    #   - '80:80'
+    #   - '443:443'
+    #   - '81:81'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    network_mode: "host"
+
+# custom config for preserving header
+# location / {
+#     proxy_pass http://grafana.k3s2.local;
+#     proxy_set_header Host "grafana.k3s2.local";
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#     proxy_set_header X-Forwarded-Proto $scheme;
+#
+#    proxy_set_header Origin $http_origin;
+#     proxy_hide_header Access-Control-Allow-Origin;
+#     add_header Access-Control-Allow-Origin $http_origin;
+#     add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS";
+#     add_header Access-Control-Allow-Headers "Authorization, Content-Type";
+#     add_header Access-Control-Allow-Credentials "true";
+# }
+
+# location / {
+#     proxy_pass http://win.k3s2.local;
+#     proxy_set_header Host "win.k3s2.local";
+#     proxy_set_header X-Real-IP $remote_addr;
+#     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#     proxy_set_header X-Forwarded-Proto $scheme;
+#
+#     proxy_http_version 1.1;
+#     proxy_set_header Upgrade $http_upgrade;
+#     proxy_set_header Connection "upgrade";
+#
+#     proxy_read_timeout 3600s;
+#     proxy_send_timeout 3600s;
+#     proxy_buffering off;
+# }

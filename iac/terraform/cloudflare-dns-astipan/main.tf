@@ -1,5 +1,5 @@
 module "cloudflare_record" {
-  source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/cloudflare_record?ref=v0.0.6"
+  source = "github.com/Ujstor/terraform-hetzner-modules//modules/network/cloudflare_record?ref=v0.0.8"
 
   cloudflare_record = {
     portfolio = {
@@ -68,4 +68,3 @@ module "cloudflare_record" {
     }
   }
 }
-
