@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-metallb-config-k3s4
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/hook-dependency: system-metallb-operator
+spec:
+  destination:
+    namespace: metallb
+    server: https://api.k3s4.ujstor.dev:6444
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s4-backup/helm/system/metallb-config
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: metallb-config
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,6 @@
+dependencies:
+- name: ingress-nginx
+  repository: https://ujstor.github.io/helm-charts-system
+  version: 1.0.0
+digest: sha256:b731e0a2bae5e13e0cde62d1815757c273af442d0dd667661e2ffd4b09d40afc
+generated: "2024-12-08T16:07:22.119359249+01:00"

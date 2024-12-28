@@ -1,12 +1,11 @@
 apiVersion: v2
-name: argo-cd
-description: A argo-cd Helm chart config by Ujstor
+name: external-secrets
+description: External-Secrets Helm chart configured by Ujstor
 type: application
 version: 1.0.0
-appVersion: "v2.13.0"
+appVersion: "v0.10.5"
 
 dependencies:
-- name: argo-cd
+- name: external-secrets
   version: 1.0.0
   repository: "https://ujstor.github.io/helm-charts-system"
-  alias: argocd-k3s

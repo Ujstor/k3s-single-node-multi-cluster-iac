@@ -1,0 +1,5 @@
+cilium-k3s:
+  cilium:
+    k8sServiceHost: api.k3s4.local
+    operator:
+      replicas: 1

@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-cert-manager-k3s4
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/hook-dependency: system-ingress-nginx
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://api.k3s4.ujstor.dev:6444
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s4-backup/helm/system/cert-manager
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: cert-manager
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

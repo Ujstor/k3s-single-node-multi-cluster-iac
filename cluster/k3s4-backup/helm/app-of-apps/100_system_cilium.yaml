@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-cilium-k3s4
+  namespace: gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    namespace: kube-system
+    server: https://api.k3s4.ujstor.dev:6444
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s4-backup/helm/system/cilium
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: cilium
+  syncPolicy:
+    automated:
+      selfHeal: true
