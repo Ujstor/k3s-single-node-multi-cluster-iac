@@ -66,7 +66,7 @@ module "cloudflare_record" {
       ttl     = 3600
       proxied = false
     }
-    grafana = {
+    grafana-k3s2 = {
       zone_id = var.cloudflare_zone_id
       name    = "grafana.k3s2"
       content = local.ip
@@ -74,9 +74,17 @@ module "cloudflare_record" {
       ttl     = 3600
       proxied = false
     }
-    win = {
+    win-k3s2 = {
       zone_id = var.cloudflare_zone_id
       name    = "win.k3s2"
+      content = local.ip
+      type    = "A"
+      ttl     = 3600
+      proxied = false
+    }
+    grafana-k3s3 = {
+      zone_id = var.cloudflare_zone_id
+      name    = "grafana.k3s3"
       content = local.ip
       type    = "A"
       ttl     = 3600
