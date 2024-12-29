@@ -19,6 +19,12 @@ spec:
     helm:
       version: v3
       releaseName: k8s-win
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/template/spec/volumes/*/hostPath
+    - /status
   syncPolicy:
     automated:
       selfHeal: true
