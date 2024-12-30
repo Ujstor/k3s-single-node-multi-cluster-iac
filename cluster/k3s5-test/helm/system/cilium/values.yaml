@@ -1,5 +1,5 @@
 cilium-k3s:
   cilium:
-    k8sServiceHost: api.k3s5.local
+    k8sServiceHost: api.k3s5.ujstor.dev
     operator:
       replicas: 1

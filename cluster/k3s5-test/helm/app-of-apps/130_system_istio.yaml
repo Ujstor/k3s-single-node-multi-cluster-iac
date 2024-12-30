@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: system-istio-k3s5
+  namespace: gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/hook-dependency: system-cilium
+spec:
+  destination:
+    namespace: istio-system
+    server: https://api.k3s5.ujstor.dev:6443
+  project: ops-cluster-bootstrap
+  source:
+    path: cluster/k3s5-test/helm/system/istio
+    repoURL: https://github.com/Ujstor/k3s-single-node-multi-cluster-iac.git
+    targetRevision: master
+    helm:
+      version: v3
+      releaseName: istiod
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
