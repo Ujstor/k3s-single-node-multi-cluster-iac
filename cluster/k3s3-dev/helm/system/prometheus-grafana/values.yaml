@@ -10,14 +10,6 @@ metrics-k3s3:
           nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
           nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
           nginx.ingress.kubernetes.io/ssl-redirect: "false"
-          nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-          nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-          nginx.ingress.kubernetes.io/enable-websocket: "true"
-          nginx.ingress.kubernetes.io/enable-cors: "true"
-          nginx.ingress.kubernetes.io/cors-allow-methods: "GET, PUT, POST, DELETE, OPTIONS"
-          nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-          nginx.ingress.kubernetes.io/cors-allow-origin: "https://grafana.k3s3.ujstor.dev"
         hosts:
           - grafana.k3s3.local
         path: /

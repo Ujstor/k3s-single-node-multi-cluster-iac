@@ -1,22 +1,22 @@
 ---
 server:
   children:
-    # k3s0:
-    #   hosts:
-    #     api.k3s0.ujstor.com:
-    #       api_endpoint: 
-    #        - api.k3s0.ujstor.com
-    #       k3s_control_node: true
-    #       k3s_server_init_node: true
-    #       server_group: "k3s0"
-    # k3s1:
-    #   hosts:
-    #     api.k3s1.ujstor.com:
-    #       api_endpoint: 
-    #        - api.k3s1.ujstor.com
-    #       k3s_control_node: true
-    #       k3s_server_init_node: true
-    #       server_group: "k3s1"
+    k3s0:
+      hosts:
+        api.k3s0.ujstor.com:
+          api_endpoint: 
+           - api.k3s0.ujstor.com
+          k3s_control_node: true
+          k3s_server_init_node: true
+          server_group: "k3s0"
+    k3s1:
+      hosts:
+        api.k3s1.ujstor.com:
+          api_endpoint: 
+           - api.k3s1.ujstor.com
+          k3s_control_node: true
+          k3s_server_init_node: true
+          server_group: "k3s1"
     k3s2:
       hosts:
         ssh.k3s2.ujstor.dev:
@@ -50,6 +50,14 @@ server:
           server_group: "k3s4"
           ansible_user: ujstor
           ansible_port: 2244
+    k3s5:
+      hosts:
+        api.k3s5.ujstor.dev:
+          api_endpoint: 
+           - api.k3s5.ujstor.dev
+          k3s_control_node: true
+          k3s_server_init_node: true
+          server_group: "k3s5"
   vars:
     k3s_version: v1.31.3+k3s1
     extra_server_args: >-

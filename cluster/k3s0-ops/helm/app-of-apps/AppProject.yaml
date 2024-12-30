@@ -11,6 +11,8 @@ spec:
   # Allow deployment to any namespace
   destinations:
     - namespace: '*'
+      server: https://api.k3s5.ujstor.dev:6443
+    - namespace: '*'
       server: https://api.k3s4.ujstor.dev:6444
     - namespace: '*'
       server: https://api.k3s3.ujstor.dev:6443

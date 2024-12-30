@@ -70,6 +70,13 @@
     - role: k3s.orchestration.prereq
     - role: k3s.orchestration.k3s_server
 
+- name: Setup K35 server k3s5
+  hosts: k3s5
+  become: true
+  roles:
+    - role: k3s.orchestration.prereq
+    - role: k3s.orchestration.k3s_server
+
 - name: Fetch and configure kubeconfigs
   hosts: server
   become: true

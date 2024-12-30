@@ -1,0 +1,11 @@
+apiVersion: v2
+name: metallb-config
+description: MetalLB config Helm chart configured by Ujstor
+type: application
+version: 1.0.0
+appVersion: "0.14.8"
+
+dependencies:
+- name: metallb-config
+  version: 1.0.0
+  repository: "https://ujstor.github.io/helm-charts-system"
