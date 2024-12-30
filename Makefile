@@ -36,7 +36,7 @@ CHART_APPS_K3S2 := k8s-win
 
 # k3s5-win cluster packages
 CHART_SYSTEM_K3S5 := cert-manager cilium ingress-nginx cluster-issuer external-secrets metallb-operator metallb-config istio
-CHART_APPS_K3S5 :=
+CHART_APPS_K3S5 := servicemesh-app
 
 # Define pattern rules for k3s0
 build_system_k3s0: $(addprefix k3s0-system-,$(CHART_SYSTEM_K3S0))

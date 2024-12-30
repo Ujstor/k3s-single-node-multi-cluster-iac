@@ -1,0 +1,2 @@
+service-mesh-test-app:
+  domain: servicemesh.k3s5.ujstor.dev
