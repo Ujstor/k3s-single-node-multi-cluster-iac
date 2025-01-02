@@ -98,21 +98,21 @@ module "cloudflare_record" {
       ttl     = 3600
       proxied = false
     }
-    api-k3s5 = {
-      zone_id = var.cloudflare_zone_id
-      name    = "api.k3s5"
-      content = data.hcloud_server.k3s5.ipv4_address
-      type    = "A"
-      ttl     = 3600
-      proxied = false
-    }
-    wildcard-k3s5 = {
-      zone_id = var.cloudflare_zone_id
-      name    = "*.k3s5"
-      content = data.hcloud_server.k3s5.ipv4_address
-      type    = "A"
-      ttl     = 3600
-      proxied = false
-    }
+    # api-k3s5 = {
+    #   zone_id = var.cloudflare_zone_id
+    #   name    = "api.k3s5"
+    #   content = data.hcloud_server.k3s5.ipv4_address
+    #   type    = "A"
+    #   ttl     = 3600
+    #   proxied = false
+    # }
+    # wildcard-k3s5 = {
+    #   zone_id = var.cloudflare_zone_id
+    #   name    = "*.k3s5"
+    #   content = data.hcloud_server.k3s5.ipv4_address
+    #   type    = "A"
+    #   ttl     = 3600
+    #   proxied = false
+    # }
   }
 }

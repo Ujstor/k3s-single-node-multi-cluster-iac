@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aoa-cluster-backup
+  name: aoa-cluster-backup-k3s4
   namespace: gitops
 spec:
   destination:

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aoa-cluster-test
+  name: aoa-cluster-test-k3s5
   namespace: gitops
 spec:
   destination:
