@@ -14,15 +14,9 @@ s3-storage:
     ingress:
       api:
         enabled: true
-        tls: 
-          - secretName: minio-api-tls
-            hosts:
-              - s3.k3s0.harbor.k3s4.local
+        tls: []
         host: s3.k3s0.harbor.k3s4.local
       console:
         enabled: true
-        tls: 
-          - secretName: minio-console-tls
-            hosts:
-              - s3.console.k3s0.harbor.k3s4.local
+        tls: []
         host: s3.console.k3s0.harbor.k3s4.local

@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-k3s0-harbor-backup-k3s4
-
   namespace: gitops
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -11,7 +10,7 @@ metadata:
 spec:
   destination:
     namespace: k3s0-harbor-backup
-    server: https://api.k3s4.ujstor.com:6444
+    server: https://api.k3s4.ujstor.dev:6444
   project: ops-cluster-bootstrap
   source:
     path: cluster/k3s4-backup/helm/apps/k3s0-harbor-backup
