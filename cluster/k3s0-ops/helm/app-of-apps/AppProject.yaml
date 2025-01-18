@@ -19,8 +19,6 @@ spec:
     - namespace: '*'
       server: https://api.k3s2.ujstor.dev:6442
     - namespace: '*'
-      server: https://api.k3s2.ujstor.com:6443
-    - namespace: '*'
       server: https://api.k3s1.ujstor.com:6443
     - namespace: '*'
       server: https://kubernetes.default.svc
