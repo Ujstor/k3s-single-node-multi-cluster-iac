@@ -9,7 +9,7 @@ gitlab-k3s:
     smtp:
       enabled: true
       address: mail.ujstor.com
-      tls: true
+      tls: false
       authentication: 'plain'
       user_name: gitlab@ujstor.com
       password:
