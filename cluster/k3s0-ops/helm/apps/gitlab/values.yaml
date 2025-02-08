@@ -2,3 +2,16 @@ gitlab-k3s:
   gitlab:
     domain: k3s0.ujstor.com
     certIssuerEmail: astipan@mail.com
+    email:
+      display_name: Ujstor-GitLab
+      from: 'gitlab@ujstor.com'
+      reply_to: noreply@ujstor.com
+    smtp:
+      enabled: true
+      address: mail.ujstor.com
+      tls: true
+      authentication: 'plain'
+      user_name: gitlab@ujstor.com
+      password:
+        secret: smtp-password
+        key: password

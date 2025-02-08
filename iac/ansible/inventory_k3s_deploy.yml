@@ -19,7 +19,7 @@ server:
     #       server_group: "k3s1"
     k3s2:
       hosts:
-        ssh.k3s2.ujstor.dev:
+        k3s2.local:
           api_endpoint:
            - api.k3s2.ujstor.dev
            - api.k3s2.local
@@ -27,10 +27,10 @@ server:
           k3s_server_init_node: true
           server_group: "k3s2"
           ansible_user: ujstor
-          ansible_port: 2222
+          ansible_port: 22
     k3s3:
       hosts:
-        ssh.k3s3.ujstor.dev:
+        k3s3.local:
           api_endpoint:
            - api.k3s3.ujstor.dev
            - api.k3s3.local
@@ -38,7 +38,7 @@ server:
           k3s_server_init_node: true
           server_group: "k3s3"
           ansible_user: ujstor
-          ansible_port: 2233
+          ansible_port: 22
     k3s4:
       hosts:
         ssh.k3s4.ujstor.dev:

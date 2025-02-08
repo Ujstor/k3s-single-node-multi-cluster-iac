@@ -3,8 +3,8 @@
   hosts: server
   gather_facts: true
   become: true
-  roles:
-    - role: common
+  # roles:
+  #   - role: common
   tasks:
     - name: Check for existing token
       ansible.builtin.stat:
