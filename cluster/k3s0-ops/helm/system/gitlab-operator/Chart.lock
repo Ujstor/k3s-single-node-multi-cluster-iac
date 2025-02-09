@@ -1,6 +1,6 @@
 dependencies:
 - name: gitlab-operator
   repository: https://ujstor.github.io/helm-charts-system
-  version: 1.0.0
-digest: sha256:8f8120fb4b502873cc6ad304bbfbd24af528ba9484a4703f04a94932a020a26b
-generated: "2024-12-01T13:29:01.989940831+01:00"
+  version: 1.1.0
+digest: sha256:b6c862c7c36f84670dd4dd95b9f597e926ad066569b837b856893fde494ddc47
+generated: "2025-02-09T22:01:04.640903064+01:00"
