@@ -2,7 +2,7 @@ apiVersion: v2
 name: gitlab
 description: Gitlab Helm chart configured by Ujstor
 type: application
-version: 1.0.2
+version: 1.0.3
 appVersion: "17.6.1"
 
 dependencies:
