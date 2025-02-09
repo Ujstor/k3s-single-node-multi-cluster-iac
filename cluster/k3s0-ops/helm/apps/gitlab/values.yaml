@@ -1,5 +1,6 @@
 gitlab-k3s:
   gitlab:
+    version: 8.6.1
     domain: k3s0.ujstor.com
     certIssuerEmail: astipan@mail.com
     email:
