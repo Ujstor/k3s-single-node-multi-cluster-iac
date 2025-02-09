@@ -1,6 +1,6 @@
 dependencies:
 - name: gitlab
   repository: https://ujstor.github.io/helm-charts-apps
-  version: 1.0.2
-digest: sha256:08194359e1d2ccd4adf3444d1d6131e464f87f8300e4132d9515c6a0b6ae99b8
-generated: "2025-02-09T05:57:13.278418195+01:00"
+  version: 1.0.3
+digest: sha256:81e3369763c5392ef698e61bc2922c657fb907222b1dde39287ee3027bbf8772
+generated: "2025-02-09T06:11:19.731361445+01:00"

@@ -7,6 +7,6 @@ appVersion: "17.6.1"
 
 dependencies:
 - name: gitlab
-  version: 1.0.2
+  version: 1.0.3
   repository: "https://ujstor.github.io/helm-charts-apps"
   alias: gitlab-k3s
