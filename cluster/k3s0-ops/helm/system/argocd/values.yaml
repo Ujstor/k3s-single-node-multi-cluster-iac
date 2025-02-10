@@ -19,15 +19,3 @@ argocd-k3s:
       enabled: false
       haproxy:
         enabled: false
-
-    configs:
-      repositories:
-        private-gitlab:
-          url: https://gitlab.k3s0.ujstor.com
-          type: git
-          passwordSecret:
-            name: ujstor-gitlab-access
-            key: PAT_NAME
-          usernameSecret:
-            name: ujstor-gitlab-access
-            key: PAT
