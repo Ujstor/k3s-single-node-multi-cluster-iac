@@ -18,6 +18,7 @@ argocd-k3s:
     redis-ha:
       enabled: false
       haproxy:
+        enabled: false
 
     configs:
       repositories:
