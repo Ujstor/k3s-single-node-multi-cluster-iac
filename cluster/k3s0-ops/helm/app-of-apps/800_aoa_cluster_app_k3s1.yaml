@@ -16,6 +16,6 @@ spec:
     path: gitops/helm/app-of-apps
     repoURL: https://gitlab.k3s0.ujstor.com/clusters/customer-ujstor/apps-k3s1.git
     targetRevision: main
-  syncPolicy:
-    automated:
-      selfHeal: true
+  # syncPolicy:
+  #   automated:
+  #     selfHeal: true
