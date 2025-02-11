@@ -1,0 +1,1175 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Docs">
+      
+      
+      
+      
+        <link rel="prev" href="../../quick-start/helm/">
+      
+      
+        <link rel="next" href="../../deployment-logs/terraform/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+    
+    
+      
+        <title>Mailserver - k3s Single Node Multi Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+    
+      
+    
+	<script defer data-domain="ujstor.github.io/k3s-single-node-multi-cluster-iac" src="https://analytics.ujstor.com/js/script.js"></script>
+
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preconfig" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="k3s Single Node Multi Cluster" class="md-header__button md-logo" aria-label="k3s Single Node Multi Cluster" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            k3s Single Node Multi Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mailserver
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ujstor/k3s-single-node-multi-cluster-iac" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="k3s Single Node Multi Cluster" class="md-nav__button md-logo" aria-label="k3s Single Node Multi Cluster" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    k3s Single Node Multi Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ujstor/k3s-single-node-multi-cluster-iac" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Quick Start
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Quick Start
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/terraform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terrafrom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/helm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    k3s0-ops Components
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            k3s0-ops Components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Mailserver
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Mailserver
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preconfig
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preconfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cert-issuer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cert Issuer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mailserver-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MailServer configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MailServer configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dkim-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      DKIM keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful commands
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Deployment logs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment logs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment-logs/terraform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Terraform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment-logs/ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preconfig
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preconfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dns-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      DNS Records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cert-issuer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cert Issuer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network config
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mailserver-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      MailServer configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MailServer configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dkim-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      DKIM keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful commands
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Mailserver</h1>
+
+<p>The MailServer chart deploys a <a href="https://github.com/docker-mailserver/docker-mailserver">docker-mailserver</a> implementation. While the configuration can be very complex, the <a href="https://docker-mailserver.github.io/docker-mailserver/latest/">official documentation</a> is very good and serves as an excellent guide for understanding and properly configuring the mailserver.</p>
+<h2 id="preconfig">Preconfig</h2>
+<h3 id="dns-records">DNS Records</h3>
+<p>The node-infra directory, located within the IaC folder, contains <a href="https://github.com/Ujstor/k3s-single-node-multi-cluster-iac/blob/35d4d9d355e53343a046df22f39ccd57c85283f2/iac/terraform/nodes-infra/cloudflare_dns.tf#L53">Cloudflare DNS records</a>, specifically MX and A records.</p>
+<pre><code class="language-hcl">    mx = {
+      zone_id  = var.cloudflare_zone_id
+      name     = &quot;@&quot;
+      content  = &quot;mail.ujstor.com&quot;
+      type     = &quot;MX&quot;
+      priority = 10
+    }
+    mail = {
+      zone_id = var.cloudflare_zone_id
+      name    = &quot;mail&quot;
+      content = module.floating_ip.floating_ip_status.ip-1.ip
+      type    = &quot;A&quot;
+      ttl     = 60
+      proxied = false
+    }
+</code></pre>
+<h3 id="cert-issuer">Cert Issuer</h3>
+<p>We can't use the ClusterIssuer that is already deployed because there is no ingress deployed with the mailserver (the service type is LoadBalancer).</p>
+<p>For this reason, we need to:</p>
+<ul>
+<li>Create an API token with read/write permissions</li>
+<li>Add data to the Issuer object</li>
+<li>Deploy it in the namespace where the mailserver chart will be deployed with Helm</li>
+</ul>
+<pre><code class="language-yaml">apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-issuer
+  namespace: mailserver
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-key
+    solvers:
+    - dns01:
+        cloudflare:
+          apiTokenSecretRef:
+            name: mailserver-issuer
+            key: api-key
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mailserver-issuer
+  namespace: mailserver
+type: Opaque
+stringData:
+  api-key: &lt;Cloudflare-api-key&gt;
+</code></pre>
+<p>The chart needs to reference:</p>
+<ul>
+<li>The mail domain in the deployment.env.OVERRIDE_HOSTNAME section</li>
+<li>The issuer name in certificate.issuerRef.name section</li>
+<li>Specifying the certificate name is enough, and the Certificate object will be created</li>
+</ul>
+<pre><code class="language-yaml">dockermailserver:
+  deployment:
+    env:
+      OVERRIDE_HOSTNAME: mail.ujstor.com
+  certificate: mailserver-tls
+
+certificates:
+  organization: Ujstor
+  duration: 2160h
+  renewBefore: 360h
+  issuerRef:
+    name: letsencrypt-issuer
+    kind: Issuer
+</code></pre>
+<p>The Certificate object is under the templates directory and it will automatically create and mount the mailserver-tls secret to the pod.</p>
+<h3 id="network-config">Network config</h3>
+<p>The service type is LoadBalancer, so we need to add an additional <a href="https://github.com/Ujstor/k3s-single-node-multi-cluster-iac/blob/35d4d9d355e53343a046df22f39ccd57c85283f2/iac/terraform/nodes-infra/main.tf#L43">floating IP</a> to the server. This can be achieved with terraform-hetzner-modules that I am using for provisioning Hetzner infrastructure.</p>
+<pre><code class="language-hcl">module &quot;floating_ip&quot; {
+  source = &quot;github.com/Ujstor/terraform-hetzner-modules//modules/network/floating_ip?ref=v0.0.8&quot;
+
+  floating_ip_config = {
+    ip-1 = {
+      server_id       = module.k3s_prod.server_info.k3s0-ops.id
+      server_location = module.k3s_prod.server_info.k3s0-ops.location
+    }
+  }
+}
+</code></pre>
+<p>And once we have the IP, we need to add it to the <a href="https://github.com/Ujstor/k3s-single-node-multi-cluster-iac/blob/master/cluster/k3s0-ops/helm/system/metallb-config/values.yaml">MetalLB IPAddressPool</a>.</p>
+<pre><code class="language-bash">Outputs:
+
+floating_ip_info = {
+  &quot;ip-1&quot; = {
+    &quot;ip&quot; = &quot;49.13.32.42&quot;
+  }
+}
+server_info = {
+  &quot;k3s0-ops&quot; = {
+    &quot;id&quot; = &quot;57518060&quot;
+    &quot;ip&quot; = &quot;188.245.179.200&quot;
+    &quot;location&quot; = &quot;nbg1&quot;
+    &quot;status&quot; = &quot;running&quot;
+  }
+  &quot;k3s1-app&quot; = {
+    &quot;id&quot; = &quot;57518059&quot;
+    &quot;ip&quot; = &quot;49.13.159.158&quot;
+    &quot;location&quot; = &quot;nbg1&quot;
+    &quot;status&quot; = &quot;running&quot;
+  }
+}
+</code></pre>
+<pre><code class="language-yaml">metallb-config:
+  ipAddressPool:
+    addresses:
+     - 188.245.179.200/32
+     - 49.13.32.42/32
+
+  l2Advertisement:
+    enabled: true
+</code></pre>
+<p>Push to main and ArgoCD will provision MetalLB and mailserver deployment.</p>
+<h2 id="mailserver-configuration">MailServer configuration</h2>
+<p>Once deployed, you will have 120 seconds to create an account. I am using <a href="https://k9scli.io/">k9s</a>, and by pressing 's' on the pod, you will have an active shell. There are other ways to do this in a more automated way, but for now we are following these steps manually so we can better understand what is happening.</p>
+<p>Execute the command to create an email account.</p>
+<pre><code class="language-bash">setup email add admin@ujstor.com password1234
+
+setup email list
+</code></pre>
+<p>This is a minimal configuration. Test it with an application that supports SMTP - for example, Uptime Kuma can send you notifications when your website endpoint is unavailable.</p>
+<p>Forwarding email to Gmail with a minimal configuration will not work. Looking at the logs, you can see the issue: your SMTP server successfully accepts and processes the email, but it's rejected by Gmail's SMTP server. While your server accepts the message and queues it, delivery to Gmail fails.</p>
+<p>Pod logs:</p>
+<pre><code class="language-bash">postfix/smtp[5465]: 940A663D054: to=&lt;astipan@gmail.com&gt;, relay=gmail-smtp-in.l.google.com[142.251.31.26]:25, delay=0.48, delays=0.08/0.02/0.05/0.33, dsn=5.7
+</code></pre>
+<p>The dsn=5.7 error code suggests that Gmail is rejecting the email due to authentication/security requirements.</p>
+<p>To fix this, you should Generate DKIM key:</p>
+<h3 id="dkim-keys">DKIM keys</h3>
+<p>Create active shell in pod, and execute:</p>
+<pre><code class="language-bash">setup config dkim
+2024-12-22 19:45:58+00:00 INFO  rspamd-dkim: Creating DKIM keys of type 'rsa' and length '2048' with selector 'mail' for domain 'ujstor.com'
+2024-12-22 19:45:59+00:00 INFO  rspamd-dkim: Successfully created DKIM keys
+2024-12-22 19:45:59+00:00 INFO  rspamd-dkim: Supplying a default configuration (to '/tmp/docker-mailserver/rspamd/override.d/dkim_signing.conf')
+rspamd: stopped
+rspamd: started
+2024-12-22 19:45:59+00:00 INFO  rspamd-dkim: Here is the content of the TXT DNS record mail._domainkey.ujstor.com that you need to create:
+
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlKuh1diP0S5sKdXtlMnjqtDijNqXAHnsHo4jRySPS8TgjwJIKuKa8jq4LlsStZoUXcCEGlqJuBnUqVUeOoBkCrJRqQqh3sg1YgPTzKIfqb6Yq10x6N//BftlgvIB7y0I/UdcE6S3i4Umub0xB6/A7pY6tXtqqlT91jDvl1gN2wugQF0unsPrqzVyplOkS8mT2Uz08gtrgf3Aa7gQ+IQo93hciLH0I/Ik9LK5Lfj62J4SfMUAAQBw5gSETi0ZIlzd9xkziBYpx6xDDjqEp8L2fbejstYlERMDIQOaKibvCwG2VF52oIMkNuu7R4qpChjsnbvFqa7hSQCfAluwjl2bfwIDAQAB
+
+rspamd: stopped
+rspamd: started
+</code></pre>
+<p>Then create new TXT record in Cloudflare DNS with the content provided under iac and run terrafrom apply:</p>
+<pre><code class="language-hcl">    mail-dkms = {
+      zone_id = var.cloudflare_zone_id
+      name    = &quot;mail._domainkey.ujstor.com&quot;
+      content = &quot;v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlKuh1diP0S5sKdXtlMnjqtDijNqXAHnsHo4jRySPS8TgjwJIKuKa8jq4LlsStZoUXcCEGlqJuBnUqVUeOoBkCrJRqQqh3sg1YgPTzKIfqb6Yq10x6N//BftlgvIB7y0I/UdcE6S3i4Umub0xB6/A7pY6tXtqqlT91jDvl1gN2wugQF0unsPrqzVyplOkS8mT2Uz08gtrgf3Aa7gQ+IQo93hciLH0I/Ik9LK5Lfj62J4SfMUAAQBw5gSETi0ZIlzd9xkziBYpx6xDDjqEp8L2fbejstYlERMDIQOaKibvCwG2VF52oIMkNuu7R4qpChjsnbvFqa7hSQCfAluwjl2bfwIDAQAB&quot;
+      type    = &quot;TXT&quot;
+      ttl     = 1
+    }
+</code></pre>
+<h3 id="test">Test</h3>
+<p>If you now send an email to Gmail, it will be accepted and delivered.</p>
+<p><a href="https://www.gmass.co/smtp-test">gmass SMTP test</a> logs</p>
+<pre><code class="language-bash">Connected to smtp://mail.ujstor.com:587/?starttls=when-available
+&lt;&lt; 220 mail.ujstor.com ESMTP
+&gt;&gt; EHLO [172.31.11.248]
+&lt;&lt; 250-mail.ujstor.com
+&lt;&lt; 250-PIPELINING
+&lt;&lt; 250-SIZE 10240000
+&lt;&lt; 250-ETRN
+&lt;&lt; 250-STARTTLS
+&lt;&lt; 250-ENHANCEDSTATUSCODES
+&lt;&lt; 250-8BITMIME
+&lt;&lt; 250-DSN
+&lt;&lt; 250 CHUNKING
+&gt;&gt; STARTTLS
+&lt;&lt; 220 2.0.0 Ready to start TLS
+&gt;&gt; EHLO [172.31.11.248]
+&lt;&lt; 250-mail.ujstor.com
+&lt;&lt; 250-PIPELINING
+&lt;&lt; 250-SIZE 10240000
+&lt;&lt; 250-ETRN
+&lt;&lt; 250-AUTH PLAIN LOGIN
+&lt;&lt; 250-AUTH=PLAIN LOGIN
+&lt;&lt; 250-ENHANCEDSTATUSCODES
+&lt;&lt; 250-8BITMIME
+&lt;&lt; 250-DSN
+&lt;&lt; 250 CHUNKING
+&gt;&gt; AUTH PLAIN AGFkbWluQHVqc3Rvci5jb20AcGFzc3dvcmQxMjM0
+&lt;&lt; 235 2.7.0 Authentication successful
+&gt;&gt; MAIL FROM:&lt;admin@ujstor.com&gt; SIZE=551
+&gt;&gt; RCPT TO:&lt;astipan@gmail.com&gt;
+&lt;&lt; 250 2.1.0 Ok
+&lt;&lt; 250 2.1.5 Ok
+&gt;&gt; DATA
+&lt;&lt; 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+&gt;&gt; From: admin@ujstor.com
+&gt;&gt; Date: Sun, 22 Dec 2024 19:56:52 퍍
+&gt;&gt; Subject: SMTP test from mail.ujstor.com
+&gt;&gt; Message-Id: &lt;NDGOPQ70YOU4.5VT4A0G77RFU3@WIN-AUIR3RRGP88&gt;
+&gt;&gt; To: astipan@gmail.com
+&gt;&gt; MIME-Version: 1.0
+&gt;&gt; Content-Type: multipart/alternative; boundary=&quot;=-qL2핺迼쾍瘘==&quot;
+&gt;&gt;
+&gt;&gt; --=-qL2핺迼쾍瘘==
+&gt;&gt; Content-Type: text/plain; charset=utf-8
+&gt;&gt;
+&gt;&gt; Test message
+&gt;&gt; --=-qL2핺迼쾍瘘==
+&gt;&gt; Content-Type: text/html; charset=utf-8
+&gt;&gt; Content-Id: &lt;NDGOPQ70YOU4.8C46H6CU77TD@WIN-AUIR3RRGP88&gt;
+&gt;&gt;
+&gt;&gt; &lt;b&gt;Test message&lt;/b&gt;
+&gt;&gt; --=-qL2핺迼쾍瘘==--
+&gt;&gt; .
+&lt;&lt; 250 2.0.0 Ok: queued as EF1B7645EE7
+</code></pre>
+<p>Pod logs</p>
+<pre><code class="language-bash">24-12-22 19:40:43+00:00 INFO  start-mailserver.sh: Welcome to docker-mailserver v14.0.0                                                                                                                                                                                                                                                                     │
+│ 2024-12-22 19:40:43+00:00 INFO  start-mailserver.sh: Checking configuration                                                                                                                                                                                                                                                                               │
+│ 2024-12-22 19:40:43+00:00 INFO  start-mailserver.sh: Configuring mail server                                                                                                                                                                                                                                                                              │
+│ 2024-12-22 19:40:43+00:00 WARN  start-mailserver.sh: You need at least one mail account to start Dovecot (120s left for account creation before shutdown)                                                                                                                                                                                                 │
+│ 2024-12-22 19:40:53+00:00 WARN  start-mailserver.sh: You need at least one mail account to start Dovecot (110s left for account creation before shutdown)                                                                                                                                                                                                 │
+│ 2024-12-22 19:41:03+00:00 WARN  start-mailserver.sh: You need at least one mail account to start Dovecot (100s left for account creation before shutdown)                                                                                                                                                                                                 │
+│ 2024-12-22 19:41:13+00:00 WARN  start-mailserver.sh: You need at least one mail account to start Dovecot (90s left for account creation before shutdown)                                                                                                                                                                                                  │
+│ 2024-12-22 19:41:24+00:00 INFO  start-mailserver.sh: Starting daemons                                                                                                                                                                                                                                                                                     │
+│ 2024-12-22 19:41:27+00:00 INFO  start-mailserver.sh: mail.ujstor.com is up and running                                                                                                                                                                                                                                                                    │
+│ tail: inotify cannot be used, reverting to polling: Too many open files                                                                                                                                                                                                                                                                                   │
+│ 2024-12-22T19:41:27.823323+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/postfix-script[932]: starting the Postfix mail system                                                                                                                                                                                                               │
+│ 2024-12-22T19:41:27.840527+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/master[933]: daemon started -- version 3.7.10, configuration /etc/postfix                                                                                                                                                                                           │
+│ 2024-12-22 19:45:59,990 WARN stopped: rspamd (terminated by SIGTERM)                                                                                                                                                                                                                                                                                      │
+│ 2024-12-22T19:56:51.364820+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/submission/smtpd[4467]: connect from ec2-54-212-131-181.us-west-2.compute.amazonaws.com[54.212.131.181]                                                                                                                                                             │
+│ 2024-12-22T19:56:52.324327+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/submission/smtpd[4467]: Anonymous TLS connection established from ec2-54-212-131-181.us-west-2.compute.amazonaws.com[54.212.131.181]: TLSv1.2 with cipher DHE-RSA-AES128-GCM-SHA256 (128/128 bits)                                                                  │
+│ 2024-12-22T19:56:52.979665+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/submission/smtpd[4467]: EF1B7645EE7: client=ec2-54-212-131-181.us-west-2.compute.amazonaws.com[54.212.131.181], sasl_method=PLAIN, sasl_username=admin@ujstor.com                                                                                                   │
+│ 2024-12-22T19:56:53.355001+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/sender-cleanup/cleanup[4477]: EF1B7645EE7: message-id=&lt;NDGOPQ70YOU4.5VT4A0G77RFU3@WIN-AUIR3RRGP88&gt;                                                                                                                                                                  │
+│ 2024-12-22T19:56:53.355079+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/sender-cleanup/cleanup[4477]: EF1B7645EE7: replace: header MIME-Version: 1.0 from ec2-54-212-131-181.us-west-2.compute.amazonaws.com[54.212.131.181]; from=&lt;admin@ujstor.com&gt; to=&lt;astipan@gmail.com&gt; proto=ESMTP helo=&lt;[172.31.11.248]&gt;: MIME-Version: 1.0          │
+│ 2024-12-22T19:56:53.580667+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/qmgr[935]: EF1B7645EE7: from=&lt;admin@ujstor.com&gt;, size=585, nrcpt=1 (queue active)                                                                                                                                                                                   │
+│ 2024-12-22T19:56:53.722477+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/smtp[4478]: Trusted TLS connection established to gmail-smtp-in.l.google.com[142.251.31.27]:25: TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits) key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256                              │
+│ 2024-12-22T19:56:53.761942+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/submission/smtpd[4467]: disconnect from ec2-54-212-131-181.us-west-2.compute.amazonaws.com[54.212.131.181] ehlo=2 starttls=1 auth=1 mail=1 rcpt=1 data=1 commands=7                                                                                                 │
+│ 2024-12-22T19:56:54.285473+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/smtp[4478]: EF1B7645EE7: to=&lt;astipan@gmail.com&gt;, relay=gmail-smtp-in.l.google.com[142.251.31.27]:25, delay=1.3, delays=0.62/0.03/0.14/0.54, dsn=2.0.0, status=sent (250 2.0.0 OK  1734897414 a640c23a62f3a-aac0f040f87si490882066b.477 - gsmtp)                     │
+│ 2024-12-22T19:56:54.286079+00:00 mailserver-dockermailserver-7f75d8656b-78f5h postfix/qmgr[935]: EF1B7645EE7: removed 
+</code></pre>
+<h2 id="test-tools">Test tools</h2>
+<ul>
+<li>The complete IP check for sending Mailservers: <a href="https://multirbl.valli.org/">https://multirbl.valli.org/</a></li>
+<li>SMTP test: <a href="https://www.gmass.co/smtp-test">https://www.gmass.co/smtp-test</a></li>
+</ul>
+<h2 id="useful-commands">Useful commands</h2>
+<pre><code class="language-bash">setup email add admin@example.com passwd123
+setup email add info@example.com passwd123
+setup alias add admin@example.com external-account@gmail.com
+setup alias add info@example.com external-account@gmail.com
+setup email list
+setup alias list
+setup email del admin@example.com
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../quick-start/helm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Helm">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Helm
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../deployment-logs/terraform/" class="md-footer__link md-footer__link--next" aria-label="Next: Terraform">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Terraform
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Ujstor
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.footer", "toc.flow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      
+    
+  </body>
+</html>
