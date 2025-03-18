@@ -34,8 +34,8 @@ Helm charts and Terraform modules are custom-made with the intention to be reusa
 
 Repo is archived, GitOps config is moved to private GitLab and broken into more logical components. Here are repo mirrors:
 
-- 1. [UTR-OPS-PROD-K8S0](https://github.com/Ujstor/utr-ops-prod-k8s0)
-- 2. [UTR-APP-PROD-K8S0](https://github.com/Ujstor/utr-app-prod-k8s0)
-- 3. [UTR-LAB-K8S0](https://github.com/Ujstor/utr-lab-k8s0)
+- [UTR-OPS-PROD-K8S0](https://github.com/Ujstor/utr-ops-prod-k8s0)
+- [UTR-APP-PROD-K8S0](https://github.com/Ujstor/utr-app-prod-k8s0)
+- [UTR-LAB-K8S0](https://github.com/Ujstor/utr-lab-k8s0)
 
 
