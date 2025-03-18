@@ -29,3 +29,13 @@ Helm charts and Terraform modules are custom-made with the intention to be reusa
 - [Terraform Hetzner Modules](https://github.com/Ujstor/terraform-hetzner-modules)
 
 [Docs](https://ujstor.github.io/k3s-single-node-multi-cluster-iac/) are work in progress.
+
+# Notes
+
+Repo is archived, GitOps config is moved to private GitLab and broken into more logical components. Here are repo mirrors:
+
+- 1. [UTR-OPS-PROD-K8S0](https://github.com/Ujstor/utr-ops-prod-k8s0)
+- 2. [UTR-APP-PROD-K8S0](https://github.com/Ujstor/utr-app-prod-k8s0)
+- 3. [UTR-LAB-K8S0](https://github.com/Ujstor/utr-lab-k8s0)
+
+
